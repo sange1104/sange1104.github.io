@@ -1,0 +1,77 @@
+#-------------------------------
+# General Site Settings
+
+menu:
+- {name: 'About',    url: 'about'} 
+- {name: 'Research', url: 'research'}
+- {name: 'Apps', url: 'others'}
+# - {name: 'Blog',     url: 'blog'}
+
+#-------------------------------
+# Projects Section
+
+research:
+- {name: 'TTancent',   url: 'proj-1', date: '2021 summer', keywords: '#Web application, #Face-recognition'}
+- {name: 'All About Covid-19',   url: 'proj-2', date: '2020 fall', keywords: '#SQL, #Data analysis'} 
+- {name: 'Want2Seat', url: 'proj-3', date: '2020 winter', keywords: '#Android application, #Transportation service'}
+- {name: 'SKKU Carpool',  url: 'proj-4', date: '2020 summer', keywords: '#Android application, #Chat service'}
+# - {name: 'Project Five',  url: 'proj-5'}
+
+research-keyword:
+- {name: 'All',   projects:''}
+- {name: 'Computational Social Science',   projects:''}
+- {name: 'Computer Vision',   projects:''}
+- {name: 'Emotion AI',   projects:''}
+- {name: 'Natural Language Processing',   projects:''}
+- {name: 'Network Analysis',   projects:''}
+
+apps-keyword:
+- {name: 'All',   projects:''}
+- {name: 'Android',   projects:''}
+- {name: 'Web',   projects:''}
+- {name: 'Chat service',   projects:''}
+- {name: 'Transportation service',   projects:''}
+- {name: 'SQL',   projects:''}
+- {name: 'Data analysis',   projects:''}
+- {name: 'Face-recognition',   projects:''}
+
+#-------------------------------
+# Contact Section
+
+social:
+- {icon: 'email',   link: 'sange1104@g.skku.edu'}
+- {icon: 'google-plus', link: 'https://scholar.google.co.kr/citations?hl=ko&user=BHL0tcUAAAAJ'}
+- {icon: 'github',    link: 'https://github.com/sange1104'}
+- {icon: 'linkedin',  link: 'https://linkedin.com/in/sange1104'}
+# - {icon: 'envelope',  link: 'mailto:mailto:l.nguyen.paul@gmail.com'}
+
+# social network icons available: 'twitter' / 'facebook' / 'github' / 'pinterest' 'google-plus' / 'linkedin' / 'youtube' / 'instagram' / 'dribbble' / 'behance' / 'soundcloud' / 'vine'
+
+#-------------------------------
+# SEO Section
+
+# NOTE: Providing SEO information will make this website more searchable on the internet.
+
+seo:
+  description: 'Personal portfolio powered by Jekyll and GitHub Pages '
+  rel-author: 'https://plus.google.com/u/0/#'
+  rel-publisher: 'https://plus.google.com/u/0/#'
+
+#-------------------------------
+# Google Analytics Section
+
+# Analytics helps you understand who visits your website.
+# Learn more at: http://support.google.com/analytics/answer/1008065
+
+# NOTE: If you want to use Google Analytics for basic web tracking: Just uncomment and enter your UA-Code here.
+
+# If you are not using Google Analytics, please change 'google-ID' to an empty string
+google-analytics-ua: 'UA-112060364-3'
+
+#-------------------------------
+# Disqus Section
+
+# Change to true for Disqus comments
+disqus:
+  comments: false
+  disqus_shortname: ''

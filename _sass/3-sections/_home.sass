@@ -1,0 +1,87 @@
+.home-container
+  width: 600px 
+  margin: auto 
+  margin-top: 10%
+
+@media (max-width: 768px)
+  .home-container
+    width: 80vw 
+
+.img-home 
+  /* animation: scale1 0.5s */
+  transform-origin: 50% 50% 
+  
+.text-home  
+  transform-origin: 50% 50% 
+  /* animation: scale1 0.5s */
+
+
+@keyframes rotate_image 
+  100% 
+    transform: rotate(360deg)
+
+@keyframes scale1 
+  0%   
+    transform: scale(0)
+  100%  
+    transform: scale(1) 
+
+@keyframes scale2
+  0%   
+    transform: scale(1)
+  100%  
+    transform: scale(0) 
+
+@keyframes translate1
+  0%   
+    transform: translate(-80px, 0px)
+  100%  
+    transform: translate(0px, 0px) 
+
+@keyframes translaterighttoleft1
+  0%   
+    transform: translate(10%, -10%)
+  100%  
+    transform: translate(0px, 0px) 
+
+@keyframes translatelefttoright1
+  0%   
+    transform: translate(-10%, -10%)
+  100%  
+    transform: translate(0px, 0px) 
+    
+@keyframes translaterighttoleft2
+  0%   
+    transform: translate(10%, 0%)
+  100%  
+    transform: translate(0px, 0px) 
+
+@keyframes translatelefttoright2
+  0%   
+    transform: translate(-10%, 0%)
+  100%  
+    transform: translate(0px, 0px) 
+    
+@keyframes translaterighttoleft3 
+  0%   
+    transform: translate(10%, 10%)
+  100%  
+    transform: translate(0px, 0px) 
+
+@keyframes translatelefttoright3
+  0%   
+    transform: translate(-10%, 10%)
+  100%  
+    transform: translate(0px, 0px) 
+    
+@keyframes translatebottomtotop
+  0%   
+    transform: translate(0%, 10%)
+  100%  
+    transform: translate(0px, 0px) 
+
+@keyframes typing
+  0% 
+    width: 50%  
+  100% 
+    width: 100%

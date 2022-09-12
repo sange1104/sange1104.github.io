@@ -1,0 +1,58 @@
+.apps-container
+  width: 100% 
+  margin: left   
+  float: left
+  margin-left: 30px  
+  margin-top: 5px 
+  overflow: hidden  
+
+.appsrow-container  
+    width: 95%    
+    height: 500px
+    overflow: hidden  
+
+.apps-unit    
+    width: 21%   
+    height: 95%
+    margin-top: 1%
+    margin-right: 5%
+    margin-bottom: 2%
+    float: left
+    border-radius: 10px
+    position: relative  
+    overflow: hidden  
+    animation: scale1 0.5s
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
+
+    background:
+      position: center center
+      repeat: no-repeat
+      size: cover
+    .project-overlay
+      transition: 0s
+      +position(absolute, 100% 0px null 0px)
+      height: 100% 
+      background: fade-out(#333, 0.2)
+      text-align: center  
+      border-bottom: 0px black 
+      white-space: pre-wrap
+      color: #e3e3d3
+      //+transition
+      +display(flex)
+      +align-items(center)
+      +justify-content(center) 
+      bold    
+        display: block
+        padding: 1px 
+        font:
+          size: 50px   
+          weight: 10 
+    &:hover .project-overlay
+        +position(absolute, 0px 0px null 0px) 
+
+    .project-overlay:hover::after 
+        content: attr(data-text)
+        text-align: left  
+        font:
+            size: 25px  
+            weight: bold
