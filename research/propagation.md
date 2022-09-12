@@ -2,7 +2,7 @@
 layout: post 
 ---
 
-## Propagation of Blame and Revolting Expressions in Social Networks Services: the Case of COVID-19
+<!-- ## Propagation of Blame and Revolting Expressions in Social Networks Services: the Case of COVID-19 -->
 
 <img src="../assets/img/research/propagation.png" width="100%;">  
 <br> 

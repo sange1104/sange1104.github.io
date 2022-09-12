@@ -2,7 +2,7 @@
 layout: post 
 ---
 
-## Measuring Embedded Human-like Biases in Face Recognition Models
+<!-- ## Measuring Embedded Human-like Biases in Face Recognition Models -->
  
 
 <!-- ![feat](../assets/img/research/feat.png)   -->

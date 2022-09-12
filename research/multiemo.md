@@ -2,7 +2,7 @@
 layout: post 
 ---
 
-## MultiEmo: multi-task framework for emoji prediction
+<!-- ## MultiEmo: multi-task framework for emoji prediction -->
 
 <img src="../assets/img/research/multiemo.png" width="100%;">  
 <br> 
