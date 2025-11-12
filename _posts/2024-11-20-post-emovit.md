@@ -26,7 +26,7 @@ CVPR 2024
 - 최근 foundation vision 모델을 개발하려는 움직임(flamingo, llava, blip2)
     - 이 모델들은 어려운 open-world 챌린지는 잘 수행하지만, emotion perception에는 취약함
         
-        ![image.png](assets\img\blog\emovit\image.png)
+        ![image.png](assets/img/blog/emovit/image.png)
         
     - 그냥 emotion question을 주면 틀린 답을 말하지만, 수정된 instruction을 주면 잘 대답함
     - 본 연구는 현재 vision 모델의 최대치의 능력을 끌어오기 위해서 **instruction tuning**을 기반으로 한 방법을 제시함
@@ -64,7 +64,7 @@ CVPR 2024
 
 ### 3.1. Preliminary of Visual instruction tuning
 
-![image.png](assets\img\blog\emovit\image%201.png)
+![image.png](assets/img/blog/emovit/image%201.png)
 
 - Full fine-tuning
     - end-to-end로 학습하는 방법 → 가장 효과적임
@@ -78,7 +78,7 @@ CVPR 2024
     - instruction - 모델의 결과가 특정한 답변 특징을 가지고 있으며, 도메인과 관련된 지식을 가지고 있게끔 함
     - 효율적인 방법임 - LLM이 과도한 재학습 없이 특정 도메인에 adapt할 수 있음
         
-        ![image.png](assets\img\blog\emovit\image%202.png)
+        ![image.png](assets/img/blog/emovit/image%202.png)
         
     - C = 단순한 raw 데이터는 아니고 descriptive or directive 정보를 포함함, 필수적임
 
@@ -99,7 +99,7 @@ CVPR 2024
 - 데이터 구축 파이프라인
     
     
-    <img src="assets\img\blog\emovit\image 3.png" width="70%"> 
+    <img src="assets/img/blog/emovit/image%203.png" width="70%" alt=""> 
     
     - 이미지 x_img에 대해서 3가지의 이미지와 관련된 문맥이 필요함: **캡션 x_c**, **감정 attribute set x_attr**, **시스템 프롬프트**
         - x_attr: emotion class, brightness, colorfulness, scene type, object class, facial expression, human action
@@ -107,7 +107,7 @@ CVPR 2024
         - 시드 예시로 쓸 수 있는 몇개의 예시를 사람이 직접 만듦 → gpt-4에 쿼리로 넣어 in-context learning을 할 수 있게끔 함
         - 생성된 emotion instruction data의 종류
             - categorical, conversation, reasoning
-                <img src="assets\img\blog\emovit\image 4.png" width="70%"> 
+                <img src="assets/img/blog/emovit/image%204.png" width="70%" alt=""> 
                 
 - 이렇게 데이터를 구축하는 방법은 simple에서 complex로 가는 점진적인 방법을 취함
     - **categorical**
@@ -126,7 +126,7 @@ CVPR 2024
 - 앞서 구축한 데이터로, 우리의 목적은 기존의 visual instruction tuning 모델을 개선하는 것 → **LLM의 가지고 있는 지식을 감정을 이해하는 도메인에 align시키는 것**
 - InstructionBLIP에 기초한 EmoVIT
     
-    <img src="assets\img\blog\emovit\image 5.png" width="70%"> 
+    <img src="assets/img/blog/emovit/image%205.png" width="70%" alt=""> 
     
     - instruction-aware q-former 모듈 - emotion-centric instructional task에 이 모듈을 이용함
         - 입력: emotion instruction token, query, image 임베딩
@@ -154,7 +154,7 @@ CVPR 2024
     
     ### 4.2. Held-out Evaluation
     
-    ![image.png](assets\img\blog\emovit\image%206.png)
+    ![image.png](assets/img/blog/emovit/image%206.png)
     
     - 우리가 생성한 emotion visual instruction 데이터가 효과적임
     
@@ -163,7 +163,7 @@ CVPR 2024
     - 새로운 이 emotion visual instruction 데이터의 일반화 가능성 평가
     - InstructBLIP외에 다른 모델에도 똑같이 이 데이터가 적용될 수 있는지 확인 → LLaVA 추가로 확인
         
-        ![image.png](assets\img\blog\emovit\image%207.png)
+        ![image.png](assets/img/blog/emovit/image%207.png)
         
         - llava도 동일하게 fine-tuning했더니 오름(당연한거 아닌가..?;;)
         - InstructionBLIP의 개선 폭이 더 큰데, instruction-aware q-former 모듈 때문일 것
@@ -173,7 +173,7 @@ CVPR 2024
     4.3.1. Ablation study of different instruction data
     
     
-    <img src="assets\img\blog\emovit\image 8.png" width="70%"> 
+    <img src="assets/img/blog/emovit/image%208.png" width="70%" alt=""> 
     
     - 데이터 타입을 달리해서 실험
     - Emoset test set, accuracy
@@ -185,7 +185,7 @@ CVPR 2024
     - Sensitivity evaluation metric 사용: 모델의 fidelity를 평가함
     - 2개의 내용적으로는 비슷한 instruction을 입력 프롬프트로 사용함
         
-        ![image.png](assets\img\blog\emovit\image%209.png)
+        ![image.png](assets/img/blog/emovit/image%209.png)
         
         - blip이랑 ours가 sensitivity 점수가 낮음 → stability가 높은 것
         
@@ -196,7 +196,7 @@ CVPR 2024
     - 여러 학습 방법들의 일반화 가능성에 대한 평가
     - 동일한 객체나 장면과 관련된 정교한 감정을 인식하는 데 특히 적합한 데이터셋인 UnBiasedEmo 테스트셋을 사용
         
-    <img src="assets\img\blog\emovit\image 10.png" width="70%"> 
+    <img src="assets/img/blog/emovit/image%2010.png" width="70%" alt=""> 
         
     
     4.4.1 Affective reasoning
@@ -204,16 +204,16 @@ CVPR 2024
     - 애매모호하고 주관적인 감정 인식 task에서는 해석가능한 모델이 필요함
         - 인지적인 프로세스를 밝히고 그래서 더 신뢰할 수 있음
             
-        <img src="assets\img\blog\emovit\image 11.png" width="70%"> 
+        <img src="assets/img/blog/emovit/image%2011.png" width="70%" alt=""> 
             
             
-        <img src="assets\img\blog\emovit\image 12.png" width="70%"> 
+        <img src="assets/img/blog/emovit/image%2012.png" width="70%" alt=""> 
             
         - 이렇게 예측한 이유에 대해서도 설명가능 - 애매한 감정 카테고리에 대해서도 모델 결정을 설명할 수 있음
 
 ### 4.5. Scaling Law
 
-<img src="assets\img\blog\emovit\image 13.png" width="70%"> 
+<img src="assets/img/blog/emovit/image%2013.png" width="70%" alt=""> 
 
 - 데이터 양의 비율 차이에 따른 결과
 - 데이터 많아질 수록 성능이 더 좋음
@@ -225,7 +225,7 @@ CVPR 2024
 - OxfordTVG-HIC 데이터셋 중 50개의 이미지를 선정, 캡션 생성
 - 30명의 참가자들중 60%이 모델이 생성한 캡션이 더 재미있다고 고름
      
-<img src="assets\img\blog\emovit\image 14.png" width="80%"> 
+<img src="assets/img/blog/emovit/image%2014.png" width="80%" alt=""> 
     
 
 ### 5. Conclusion

@@ -66,7 +66,7 @@ CVPR 2025 Workshop
         - 일반적인 질문에서 시작해서, 상황 특화된 감정 유발 요인 분석으로 fine-grained됨
         - 감정의 명시적 → 암묵적 요인까지 파악 가능 - 더 깊은 감정적 추론 가능케 함
 
-<img src="assets\img\blog\whywefeel\image.png" width="100%"> 
+<img src="assets/img/blog/whywefeel/image.png" width="100%" alt=""> 
 
 ## Problem Definition
 
@@ -77,11 +77,11 @@ CVPR 2025 Workshop
     - 입력: (이미지, 감정)
     - 출력: 감정을 유발한 요인들의 집합 T
     
-    <img src="assets\img\blog\whywefeel\image 1.png" width="70%"> 
+    <img src="assets/img/blog/whywefeel/image%201.png" width="70%" alt=""> 
     
 - 생성함수 G가 (이미지, 감정)을 입력으로 받아서 가능한 트리거들을 모아 T라는 트리거 집합을 예측함
     
-    <img src="assets\img\blog\whywefeel\image 2.png" width="70%"> 
+    <img src="assets/img/blog/whywefeel/image%202.png" width="70%" alt=""> 
     
     - 이 T 내의 trigger_i는 다음 두 종류 모두 가능함
         - 자유 형식의 문장 기반 설명
@@ -102,9 +102,9 @@ CVPR 2025 Workshop
 
 ## Emotion Interpretation Benchmark
 
-<img src="assets\img\blog\whywefeel\image 3.png" width="100%"> 
+<img src="assets/img/blog/whywefeel/image%203.png" width="100%" alt=""> 
 
-<img src="assets\img\blog\whywefeel\image 4.png" width="100%"> 
+<img src="assets/img/blog/whywefeel/image%204.png" width="100%" alt=""> 
 
 - EIBench - CAER-S, EmoSet을 기반으로 구축
 - 특정 감정이 “왜” 발생했는지를 설명하기 위해 설계된 최초의 데이터셋임
@@ -125,14 +125,14 @@ CVPR 2025 Workshop
         - s^par = φ(s_init)
     - 이미지 x_i가 있을때 llava를 사용해서 더욱 정교한 프롬프트를 만듦
         
-    <img src="assets\img\blog\whywefeel\image 5.png" width="80%"> 
+    <img src="assets/img/blog/whywefeel/image%205.png" width="80%" alt=""> 
         
     - vlm이 많은 시각적 디테일을 보긴 하지만, 미묘한 감정 단서들을 간과함 → self-ask 단계
 - **General self-asking**
     - gpt-4를 이용해서 전체 데이터셋에 대해 open-ended question을 생성하도록 함 → S^gen
     - 이 중에서 자주 등장하는 4가지 질문을 뽑음
         
-    <img src="assets\img\blog\whywefeel\image 6.png" width="80%"> 
+    <img src="assets/img/blog/whywefeel/image%206.png" width="80%" alt=""> 
         
     - 주제 - 등장 인물수, 활동이나 상호작용, 얼굴 표정, 몸짓/자세
     - 위 질문에 대해 llava가 이미지 기반 답변을 만듬 → A^gen

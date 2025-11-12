@@ -11,7 +11,7 @@ NIPS 2023
 
 `→ LLM에 이미지 인식 능력을 더해준 것이 특징`
 
---참고--\\
+--참고--//
 [LLaVA](https://llava-vl.github.io/)
 
 [[논문 리뷰] LLaVA, LLaVA-1.5](https://dalpo0814.tistory.com/64)
@@ -58,7 +58,7 @@ NIPS 2023
 - 방법 1
     - 이미지 x_v, 캡션 x_c가 있을 때, GPT-4가 이미지 내용을 묘사하도록 지시하는 질문 세트 x_q를 만들도록 함
         
-        ![image.png](assets\img\blog\llava\image.png)
+        ![image.png](assets/img/blog/llava/image.png)
         
     - 지시문과 답변 모두에 있어서 **다양성과 심층 추론이 부족함**
 - 이 문제를 완화하기 위해서, 방법 2
@@ -67,7 +67,7 @@ NIPS 2023
         1. **captions**: 여러 관점에서 장면을 묘사함
         2. **bounding boxes** : 장면 내의 객체들을 표시 - 하나의 box는 객체 개념과 위치를 인코딩함
             
-            ![image.png](assets\img\blog\llava\image 1.png)
+            ![image.png](assets/img/blog/llava/image%201.png)
             
     - COCO 이미지 - 3가지 타입의 instruction following data (위 사진에 3가지 타입 있음)
         - conversation: 어시스턴트가 이미지를 실제로 보고 질문에 답하는 것처럼 작성됨
@@ -95,7 +95,7 @@ NIPS 2023
 
 - 목적: 사전학습된 LLM과 visual 모델의 능력을 모두 효과적으로 끌어내는 것
     
-    ![image.png](assets\img\blog\llava\image 2.png)
+    ![image.png](assets/img/blog/llava/image%202.png)
     
 - LLM으로 Vicuna 사용 - 공개된 모델 중에 language task에서 instruction following 능력이 제일 높음
 - visual encoder로는 CLIP visual encoder ViT-L/14 사용 - 마지막 transformer layer 전/후 grid feature를 사용함
@@ -105,17 +105,17 @@ NIPS 2023
 1. **Training**
 - 하나의 이미지 x_v에 대해서, multi-turn conversation data를 생성함, T개의 turn에 대하여
 
-![image.png](assets\img\blog\llava\image 3.png)
+![image.png](assets/img/blog/llava/image%203.png)
 
 - [t = 1] x_instruct = (x_q1, x_v) or (x_v, x_q1)
 - [t > 1] x_instruct = x_qt
 - 입력 sequence 형태 - 모델은 초록색 글씨 부분을 예측해야함 (assistant answer, 어디서 stop하는지)
 
-![image.png](assets\img\blog\llava\image 4.png)
+![image.png](assets/img/blog/llava/image%204.png)
 
 - instruction tuning - 기존 LLM의 auto-regressive한 training objective를 사용함
 
-![image.png](assets\img\blog\llava\image 5.png)
+![image.png](assets/img/blog/llava/image%205.png)
 
 **Stage 1: Pre-training for Feature Alignment**
 
@@ -157,7 +157,7 @@ NIPS 2023
         - COCO-Val-2014에서 랜덤하게 30개의 이미지를 뽑음
         - 한 이미지 당 3개의 질문 타입을 생성함 → 90개
             
-            ![image.png](assets\img\blog\llava\image 6.png)
+            ![image.png](assets/img/blog/llava/image%206.png)
             
         - gpt4의 참조 예측을 100%라고 가정했을 때 LLAVA의 응답을 평가한 결과임
         - instruction tuning을 하는 것이 성능 개선에 중요함
@@ -166,13 +166,13 @@ NIPS 2023
     2. LLaVA-Bench (In the wild)
         - 더 어려운 문제와 새로운 도메인에서의 일반화 능력을 평가하기 위해서 다양한 24개의 이미지와 60 문제를 모음(실내, 실외, 밈, 페인팅, 스케치)
             
-            ![image.png](assets\img\blog\llava\image 7.png)
+            ![image.png](assets/img/blog/llava/image%207.png)
             
         - llava가 bliip, flamingo보다 더 좋은 성능을 보임
     
     Limitations
     
-    ![image.png](assets\img\blog\llava\image 8.png)
+    ![image.png](assets/img/blog/llava/image%208.png)
     
     - 어려운 LLava-bench(inthewild) 예제 2개
     - interesting failure: 딸기와 요거트가 각각 있는 상황에서 딸기맛 요거트가 있는가?라는 질문에 llava가 yes라고 대답함→ 이미지를 bag of patches로 인식하고, 이미지의 복잡한 semantic에 대해서는 이해하지 못함
@@ -182,7 +182,7 @@ NIPS 2023
 - 21k의 멀티모달 multiple choice questions로 이루어져 있음
 - 베이스라인 모델: GPT-3.5 (CoT 있는 버전 없는 버전 둘다), mm-CoT(현재 이 데이터셋의 sota)
     
-    ![image.png](assets\img\blog\llava\image 9.png)
+    ![image.png](assets/img/blog/llava/image%209.png)
     
 - LLAVA - 비주얼 피처를 마지막 layer 전에 사용, 먼저 reason을 예측한 후 답하라고 함, 12 에폭 학습
 
@@ -198,8 +198,8 @@ NIPS 2023
 
 ### 내 맘대로 정리
 
-<img src="assets\img\blog\llava\image 10.png" width="50%"> 
+<img src="assets/img/blog/llava/image%2010.png" width="50%" alt=""> 
 
-![image.png](assets\img\blog\llava\image 11.png)
+![image.png](assets/img/blog/llava/image%2011.png)
 
-![image.png](assets\img\blog\llava\image 12.png)
+![image.png](assets/img/blog/llava/image%2012.png)
