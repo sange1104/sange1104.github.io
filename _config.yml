@@ -27,7 +27,7 @@ url: "https://sange1104.github.io"
 
 github:
   username: sange1104 # change to your GitHub username
-  
+
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
@@ -213,8 +213,10 @@ exclude:
   - "package*.json"
 
 jekyll-archives:
-  enabled: [categories]
+  enabled: [categories, tags]
   layouts:
-    category: category 
-  permalinks: 
+    tag: tag
+    category: category
+  permalinks:
+    tag: /tags/:name/
     category: /categories/:name/

@@ -1,6 +1,7 @@
 - title: "MASP: Multi-Aspect Guided Emotion Reasoning with Soft Prompt Tuning in Vision-Language Models."
   authors: Lee, S., Lee, Y., Park, E.*, & Chae W
   venue: AAAI 2026 
+  url: https://sange1104.github.io/ 
   image: assets/img/projects/masp.jpg
 
 - title: "BOVIS: Bias-Mitigated Object-Enhanced Visual Emotion Analysis."
