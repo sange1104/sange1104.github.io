@@ -4,5 +4,96 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-> Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
-{: .prompt-tip }
+## 👋 Introduction
+
+I’m **SangEun Lee**, a research scientist at ETRI in South Korea. My research aims to develop robust vision-language models capable of understanding, reasoning, and generating in complex real-world scenarios. I am particularly interested in **emotion recognition**, **3D vision**, and **multimodal representation learning**, with a focus on designing effective data and learning frameworks for enhanced interpretability, efficiency, and generalization.
+ 
+
+---
+
+
+## 🌐 Contact
+
+- **Email:** [sange1104@etri.re.kr](mailto:sange1104@etri.re.kr)
+- [**GitHub**](https://github.com/sange1104)&nbsp;&nbsp;&nbsp;[**Google Scholar**](https://scholar.google.co.kr/citations?hl=ko&user=BHL0tcUAAAAJ)   
+
+
+---
+
+
+## 💼 Experiences
+
+**AI Researcher**, ETRI  |  *2023.01. – Present*  
+Research on 3D object generation and webtoon-style image generation using diffusion models
+
+**Research Assistant**, KT R&D Center  |   *2022.07. – 2022.08.*  
+Research for improvement of Question Answering system with contrastive learning 
+
+---
+
+## 🏆 Awards & Honors
+
+- <span style="background:#ff7675;color:white;font-size:0.75em;border-radius:4px;padding:2px 6px;margin-left:4px;">NEW</span> **1st place** in ABAW VA prediction challenge @ ICCV 2025, [media](https://www.skku.edu/skku/campus/skk_comm/news.do?mode=view&articleNo=130748)
+- **Honorable Mention** in S-HERO Practical Problem-Solving Competition @ Sungkyunkwan University, 2021
+- **2nd Prize** in In-school software development with AI contest @ Sungkyunkwan University, 2021
+- **3rd Prize** in 2020 Bookathon Contest @ Sungkyunkwan University, 2020 
+- **2nd Prize** in Lifestyle Improvement App Development Contest @ Sungkyunkwan University, 2020 
+ 
+---
+
+## 📄 Publications
+#### International (J: Journal / C: Conference)
+- <span style="background:#ff7675;color:white;font-size:0.75em;border-radius:4px;padding:2px 6px;margin-left:4px;">NEW</span>   [C8] **Lee, S**., Lee, Y., Park, E.*, & Chae W. MASP: Multi-Aspect Guided Emotion Reasoning with Soft Prompt Tuning in Vision-Language Models. In Proceedings of the AAAI Conference on Artificial Intelligence (AAAI '26), AAAI. (accepted)
+
+- [C7] Lee, Y., **Lee, S**., Park, C., Cha, J., Yang, J., & Park, E. (2025). BOVIS: Bias-Mitigated Object-Enhanced Visual Emotion Analysis. In Proceedings of the 34th ACM International Conference on Information and Knowledge Management (CIKM '25), ACM. (accepted)
+
+- [C6] Lee, Y., **Lee, S**., Park, C., Cha, J., & Park, E*. (2025). Dynamic Temporal Gating Networks for Cross-Modal Valence-Arousal Estimation. In Proceedings of the 9th Workshop and Competition on Affective & Behavior Analysis in-the-wild (ABAW, ICCV Workshop '25, pp. 61-70), IEEE.
+
+- [C5] **Lee, S**., Lee, Y., & Park, E.* (2025). EmoVLM-KD: Fusing Distilled Expertise with Vision-Language Models for Visual Emotion Analysis. In Proceedings of 8th Workshop and Competition on Affective & Behavior Analysis in-the-wild (ABAW, CVPR Workshop '25, pp. 5633-5642), IEEE.
+
+- [J6] **Lee, S**., Kim, S., Lee, Y., Yang, J., & Park, E.* (2025). Enhancing Dimensional Image Emotion Detection with a Low-resource Dataset via Two-stage Training. IEEE Transactions on Cognitive and Developmental Systems (SCIE, JCR 2023 IF=5.0, Q1 in Neuroscience).
+
+- [C4] **Lee, S**., Chae, W., Kim, H. (2024). Retrieve-and-generate: Image-to-3D framework with mesh retrieval and texture generation. In Proceedings of the 15th International Conference on ICT Convergence.
+
+- [J5] **Lee, S**., Kim, S., Chu, Y., Choi, J., Park, E*. (2024). EAE-GAN: Emotion-Aware Emoji Generative Adversarial Network for Computational Modeling Diverse and Fine-Grained Human Emotions. IEEE Transactions on Computational Social Systems, 11(3), 3862-3872 (SCIE, JCR 2022 IF=5.0, Q1 in Computer Science, Cybernetics)
+
+- [C3] Yu, H., **Lee, S**., Yeo, B., Han, J., Park, E*. Pack, S. (2024). Towards a Lightweight Object Detection through Model Pruning Approaches In Proceedings of the 14th International Conference on ICT Convergence. 
+
+- [C2] **Lee, S**., Chae, W., Kim, H. (2023). Generating Webtoon Scene Images with Latent Diffusion Models. In Proceedings of the 19th International Conference on Multimedia Information Technology and Applications.
+
+- [J4] **Lee, S**., Ryu, C., Park, E.* (2023) OSANet: Object Semantic Attention Network for Visual Sentiment Analysis. IEEE Transactions on Multimedia, 25, 7139-7148 (SCIE, JCR 2021 IF=8.182, Q1 in Computer Science, Information Systems).
+
+- [J3] **Lee, S**., Jeong, D., Park, E.* (2022) MultiEmo: multi-task framework for emoji prediction. Knowledge-Based Systems (SCIE, JCR 2020 IF=8.038, Q1 in Computer Science, Artificial Intelligence).
+
+- [C1] **Lee, S**., Oh, S., Kim, M., Park, E.* (2022) Measuring Embedded Human-like Biases in Face Recognition Models. In Proceedings of the 2022 Artificial Intelligence with Biased or Scarce Data Workshop (AIBSD '22). AAAI.
+
+- [J2] Kim, J., Aum, J., **Lee, S**., Jang, Y*., Park, E.*, Choi, D. (2021) FibVID: Comprehensive fake news diffusion dataset during the COVID-19 period. Telematics and Informatics, 64, 101688 (SSCI, JCR 2020 IF=6.182, Q1 in Information Science \& Library Science).
+
+- [J1] Choi, W., Kim, J., **Lee, S**., Park, E.* (2021) Smart home and Internet of Things: A bibliometric study. Journal of Cleaner Production, 301, 126908 (SCIE, JCR 2020 IF=9.297, Q1 in Engineering, Environmental). 
+
+
+#### Domestic
+- **이상은**， 채원석， 유호영， 김낙우， 김현진, 플랜트 산업에서의 Image-to-3D 성능 향상을 위한 사전 이미지 처리 프레임워크, 2025 한국컴퓨터종합학술대회.
+
+- **이상은**， 채원석， 김현진, 메쉬 검색과 텍스처 생성이 결합된 단일 이미지 기반 3D 객체 복원 모델, 2024 한국컴퓨터종합학술대회.
+
+- **이상은**， 채원석， 김현진, (2024) 다양한 맥락에서의 웹툰 캐릭터 이미지 생성을 위한 잠재 확산 모델 재학습, 정보과학회 컴퓨팅의 실제 논문지 30권 2호, 70 - 76.
+
+- **이상은**， 채원석， 김현진, 잠재 확산 모델 재학습을 통한 맥락별 웹툰 캐릭터 이미지 생성 기술, 2023 한국컴퓨터종합학술대회.
+
+- **이상은**， 김지수， 김지나， 박은일*, 엔젤파스쿠알델포빌, 소셜 네트워크 서비스 내 비난과 혐오 전파에 대하여: COVID-19 을 중심으로, 2021 한국HCI학회 학술대회.  
+
+---
+
+## 🎓 Education
+
+**M.Sc. in Applied Artificial Intelligence**  
+Sungkyunkwan University, Seoul, South Korea  (*2021.09. – 2023.02.*)\\
+Major GPA: 4.25/4.5
+
+
+**Bachelor of Applied Artificial Intelligence**  
+Sungkyunkwan University, Seoul, South Korea  (*2018.03. - 2021.08.*) \\
+Major GPA: 4.33/4.5, Cumulative GPA: 4.24/4.5\\
+Award: Graduating with Highest Honors (Summa Cum Laude)
+ 
