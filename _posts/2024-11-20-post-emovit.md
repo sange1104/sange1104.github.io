@@ -2,7 +2,7 @@
 title: "EmoVIT: Revolutionizing Emotion Insights with Visual Instruction Tuning"
 date: 2024-11-20
 categories: blog
-tags: [MLLM, Vision-language, Emotion-MLLM]
+tags: [mllm, vision-language, emotion-mllm]
 ---
 
 CVPR 2024 

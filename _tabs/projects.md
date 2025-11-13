@@ -2,7 +2,7 @@
 layout: page
 title: Projects
 icon: fas fa-briefcase
-order: 3 
+order: 1
 --- 
 
 <style>
@@ -38,8 +38,7 @@ order: 3
   text-decoration:underline;
 }
 .proj-authors .me {
-  font-weight: 700;
-  color: #100000;  
+  font-weight: 700; 
 }
 .proj-authors {
   color:#6b7280;
