@@ -1,0 +1,36 @@
+<style> 
+.project-details {
+  padding-left: 20px;
+  font-size: 0.95em; 
+  line-height: 1.4; /* 줄 간격을 1.4배로 조정 (기본값보다 조금 줄이거나 취향에 맞게 조정 가능) */
+}
+
+/* 목록(ul) 내부의 간격도 조정하여 더 간결하게 만듭니다. */
+.project-details ul {
+  padding-left: 20px; /* 목록 들여쓰기 조정 */
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.project-details li {
+  margin-bottom: 3px; /* 목록 항목 간 간격 줄임 */
+}
+
+/* 제목(h3)의 상하 간격도 줄여서 섹션이 붙어 보이게 합니다. */
+.project-details h3 {
+  font-size: 1.0em; /* 제목 크기도 약간 줄임 */
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+/* <summary> 자체의 폰트 크기는 그대로 유지하여 제목을 강조합니다. */
+summary strong {
+    font-size: 1.0em; 
+}
+
+/* 중요한 키워드용 파란색 */
+.highlight-blue {
+  color: #007bff; /* 밝은 파란색 예시 */
+}
+ 
+</style>
