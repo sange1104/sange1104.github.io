@@ -1,0 +1,50 @@
+name: Sync Notion posts
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    # 매일 KST 오전 9시 = UTC 00:00
+    - cron: "0 0 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Reset notion posts folder
+        run: |
+          rm -rf _posts/notion
+          mkdir -p _posts/notion
+
+      - name: Export Notion DB to markdown
+        uses: yucchiy/notion-to-markdown@main
+        with:
+          notion_auth_token: ${{ secrets.NOTION_AUTH_TOKEN }}
+          notion_database_id: ${{ secrets.NOTION_DATABASE_ID }}
+          output_directory_path_template: "notion_export/{{publish|date.to_string('%Y-%m-%d')}}-{{slug}}"
+
+      - name: Move exported markdown into _posts
+        run: |
+          shopt -s globstar nullglob
+          files=(notion_export/**/*.md)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No markdown files exported."
+            exit 0
+          fi
+
+          for f in "${files[@]}"; do
+            base="$(basename "$f")"
+            mv "$f" "_posts/notion/$base"
+          done
+
+          rm -rf notion_export
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: "_posts/notion"
+          message: "chore: sync posts from notion"
