@@ -76,10 +76,10 @@ async function main() {
       page_size: 100,
       // ✅ 여기서 "내보낼 글만" 필터링 가능
       // RequestPublishing 체크박스가 true인 것만
-      filter: {
-        property: "RequestPublishing",
-        checkbox: { equals: true },
-      },
+      // filter: {
+      //   property: "RequestPublishing",
+      //   checkbox: { equals: true },
+      // },
       // 최신 발행일 순 정렬 (선택)
       sorts: [
         { property: "PublishedAt", direction: "descending" }
