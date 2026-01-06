@@ -1,10 +1,9 @@
-name: Sync Notion posts
+name: Sync Notion posts (read-only)
 
 on:
   workflow_dispatch: {}
   schedule:
-    # 매일 KST 오전 9시 = UTC 00:00
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * *"  # KST 09:00
 
 permissions:
   contents: write
@@ -15,33 +14,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Reset notion posts folder
-        run: |
-          rm -rf _posts/notion
-          mkdir -p _posts/notion
-
-      - name: Export Notion DB to markdown
-        uses: yucchiy/notion-to-markdown@main
+      - uses: actions/setup-node@v4
         with:
-          notion_auth_token: ${{ secrets.NOTION_AUTH_TOKEN }}
-          notion_database_id: ${{ secrets.NOTION_DATABASE_ID }}
-          output_directory_path_template: "notion_export/{{publish|date.to_string('%Y-%m-%d')}}-{{slug}}"
+          node-version: "20"
 
-      - name: Move exported markdown into _posts
-        run: |
-          shopt -s globstar nullglob
-          files=(notion_export/**/*.md)
-          if [ ${#files[@]} -eq 0 ]; then
-            echo "No markdown files exported."
-            exit 0
-          fi
+      - name: Install deps
+        run: npm install
 
-          for f in "${files[@]}"; do
-            base="$(basename "$f")"
-            mv "$f" "_posts/notion/$base"
-          done
-
-          rm -rf notion_export
+      - name: Export Notion DB to _posts/notion
+        env:
+          NOTION_AUTH_TOKEN: ${{ secrets.NOTION_AUTH_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        run: node scripts/sync_notion_posts.mjs
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
