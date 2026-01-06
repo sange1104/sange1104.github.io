@@ -65,6 +65,12 @@ function fmEscape(s) {
   return s.replace(/"/g, '\\"');
 }
 
+function getMultiSelect(props, name) {
+  const p = props?.[name];
+  if (!p || p.type !== "multi_select") return [];
+  return p.multi_select.map(x => x.name);
+}
+
 async function main() {
   let cursor = undefined;
   let count = 0;
@@ -100,6 +106,9 @@ async function main() {
 
       const slug = sanitizeSlug(slugRaw);
       const ymd = toYMD(publishedAt);
+      const tags = getMultiSelect(props, "Tags");
+      const categories = getMultiSelect(props, "Categories");
+
 
       const mdBlocks = await n2m.pageToMarkdown(page.id);
       const mdString = n2m.toMarkdownString(mdBlocks).parent ?? "";
@@ -108,8 +117,10 @@ async function main() {
 `---
 title: "${fmEscape(title)}"
 date: ${ymd}
+${categories.length > 0 ? `categories: [${categories.join(", ")}]\n` : ""}${tags.length > 0 ? `tags: [${tags.join(", ")}]` : ""}
 ---
 `;
+
 
       const filename = `${ymd}-${slug}.md`;
       const outPath = path.join(OUT_DIR, filename);
