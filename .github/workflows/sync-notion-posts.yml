@@ -1,34 +1,73 @@
-name: Sync Notion posts (read-only)
+name: Sync Notion posts + Deploy Pages
 
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: "0 0 * * *"  # KST 09:00
+    - cron: "10 0 * * *"
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  sync:
+  sync_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
 
       - name: Install deps
-        run: npm install
+        run: npm ci
 
       - name: Export Notion DB to _posts/notion
         env:
           NOTION_AUTH_TOKEN: ${{ secrets.NOTION_AUTH_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: node scripts/sync_notion_posts.mjs
+ 
+      - name: Commit changes (if any)
+        id: commit
+        run: |
+          if [[ -n "$(git status --porcelain _posts/notion)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add _posts/notion
+            git commit -m "chore: sync posts from notion"
+            git push
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "No changes to commit."
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+ 
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v9
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          add: "_posts/notion"
-          message: "chore: sync posts from notion"
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Build with Jekyll
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --destination _site
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
