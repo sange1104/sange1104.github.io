@@ -12,8 +12,7 @@ _site
 *.gem
 
 # NPM dependencies
-node_modules
-package-lock.json
+node_modules 
 
 # IDE configurations
 .idea
