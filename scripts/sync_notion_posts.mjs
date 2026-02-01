@@ -2,7 +2,10 @@ import fs from "fs";
 import path from "path";
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
-import { v2 as cloudinary } from 'cloudinary';
+import { v2 as cloudinary } from 'cloudinary'; // 1. Cloudinary 추가
+
+const NOTION_TOKEN = process.env.NOTION_AUTH_TOKEN;
+const DATABASE_ID = process.env.NOTION_DATABASE_ID;
 
 // Cloudinary 설정
 cloudinary.config({
@@ -10,24 +13,6 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
-
-// 이미지를 업로드하고 영구 URL을 반환하는 함수
-async function uploadToCloudinary(imageUrl, fileName) {
-  try {
-    // 노션 S3 링크를 Cloudinary로 직접 전달하여 업로드
-    const result = await cloudinary.uploader.upload(imageUrl, {
-      public_id: `notion_blog/${fileName}`, // 폴더 구조 지정 가능
-      overwrite: true
-    });
-    return result.secure_url; // 영구적인 https 주소 반환
-  } catch (error) {
-    console.error('Cloudinary Upload Error:', error);
-    return imageUrl; // 실패 시 원본 링크 유지
-  }
-}
-
-const NOTION_TOKEN = process.env.NOTION_AUTH_TOKEN;
-const DATABASE_ID = process.env.NOTION_DATABASE_ID;
 
 if (!NOTION_TOKEN || !DATABASE_ID) {
   console.error("Missing NOTION_AUTH_TOKEN or NOTION_DATABASE_ID");
@@ -40,6 +25,22 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 const OUT_DIR = path.join(process.cwd(), "_posts", "notion");
 fs.rmSync(OUT_DIR, { recursive: true, force: true });
 fs.mkdirSync(OUT_DIR, { recursive: true });
+
+// 2. Cloudinary 업로드 함수 정의
+async function uploadToCloudinary(imageUrl, fileName) {
+  if (!imageUrl || imageUrl.trim() === "") return null;
+  try {
+    const result = await cloudinary.uploader.upload(imageUrl, {
+      folder: "notion_blog",
+      public_id: fileName,
+      overwrite: true
+    });
+    return result.secure_url;
+  } catch (error) {
+    console.error(`Cloudinary Upload Failed for ${fileName}:`, error);
+    return null; // 실패 시 에러 방지를 위해 null 반환
+  }
+}
 
 function getProp(props, name) {
   return props?.[name];
@@ -63,19 +64,20 @@ function getDate(props) {
   return d || null;
 }
 
-function getCheckbox(props, name) {
+// 이미지 주소를 가져오는 헬퍼 함수 추가 (노션 이미지 필드명에 맞춰 수정 필요)
+function getImageUrl(props, name) {
   const p = getProp(props, name);
-  return !!p?.checkbox;
+  if (p?.type === 'files') {
+    return p.files[0]?.file?.url || p.files[0]?.external?.url || null;
+  }
+  return null;
 }
 
-// YYYY-MM-DD
 function toYMD(dateStr) {
-  // dateStr can be YYYY-MM-DD or ISO; take first 10 chars
   return dateStr.slice(0, 10);
 }
 
 function sanitizeSlug(slug) {
-  // lower, replace spaces with -, keep a-z0-9-
   return slug
     .toLowerCase()
     .replace(/\s+/g, "-")
@@ -103,21 +105,11 @@ async function main() {
       database_id: DATABASE_ID,
       start_cursor: cursor,
       page_size: 100,
-      // ✅ 여기서 "내보낼 글만" 필터링 가능
-      // RequestPublishing 체크박스가 true인 것만
-      // filter: {
-      //   property: "RequestPublishing",
-      //   checkbox: { equals: true },
-      // },
-      // 최신 발행일 순 정렬 (선택)
-      sorts: [
-        { property: "PublishedAt", direction: "descending" }
-      ],
+      sorts: [{ property: "PublishedAt", direction: "descending" }],
     });
 
     for (const page of resp.results) {
       const props = page.properties;
-
       const title = getTitle(props);
       const slugRaw = getSlug(props);
       const publishedAt = getDate(props);
@@ -132,23 +124,30 @@ async function main() {
       const tags = getMultiSelect(props, "Tags");
       const categories = getMultiSelect(props, "Categories");
 
+      // 3. 이미지 처리 (노션의 'Image' 속성에서 가져온다고 가정)
+      const rawImageUrl = getImageUrl(props, "Image");
+      const permanentUrl = await uploadToCloudinary(rawImageUrl, `${ymd}-${slug}`);
 
       const mdBlocks = await n2m.pageToMarkdown(page.id);
       const mdString = n2m.toMarkdownString(mdBlocks).parent ?? "";
 
-      const frontmatter =
-`---
+      // 4. Front Matter 구성 (image가 있을 때만 포함)
+      let frontmatter = `---
 title: "${fmEscape(title)}"
 date: ${ymd}
-${categories.length > 0 ? `categories: [${categories.join(", ")}]\n` : ""}${tags.length > 0 ? `tags: [${tags.join(", ")}]` : ""}
----
-`;
-
+${categories.length > 0 ? `categories: [${categories.join(", ")}]\n` : ""}${tags.length > 0 ? `tags: [${tags.join(", ")}]\n` : ""}`;
+      
+      // 이미지가 성공적으로 업로드되었을 때만 추가
+      if (permanentUrl) {
+        frontmatter += `image: ${permanentUrl}\n`;
+      }
+      
+      frontmatter += `---`;
 
       const filename = `${ymd}-${slug}.md`;
       const outPath = path.join(OUT_DIR, filename);
 
-      fs.writeFileSync(outPath, frontmatter + "\n" + mdString, "utf8");
+      fs.writeFileSync(outPath, frontmatter + "\n\n" + mdString, "utf8");
       count += 1;
       console.log(`Wrote: ${outPath}`);
     }
