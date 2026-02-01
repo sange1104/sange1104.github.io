@@ -27,6 +27,9 @@ jobs:
         env:
           NOTION_AUTH_TOKEN: ${{ secrets.NOTION_AUTH_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
         run: node scripts/sync_notion_posts.mjs
 
       - name: Commit changes (if any)
