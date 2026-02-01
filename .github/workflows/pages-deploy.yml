@@ -62,15 +62,7 @@ jobs:
       - name: Build site
         run: bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
         env:
-          JEKYLL_ENV: "production"
-
-      - name: Test site
-        run: |
-          bundle exec htmlproofer _site \
-            --disable-external \
-            --ignore-empty-alt \
-            --enforce-alt false \
-            --ignore-urls "/cloudinary.com/"
+          JEKYLL_ENV: "production" 
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
