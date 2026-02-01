@@ -2,5 +2,8 @@
   "devDependencies": {
     "@notionhq/client": "^2.2.15",
     "notion-to-md": "^3.1.6"
+  },
+  "dependencies": {
+    "cloudinary": "^2.9.0"
   }
 }
