@@ -2,6 +2,29 @@ import fs from "fs";
 import path from "path";
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
+import { v2 as cloudinary } from 'cloudinary';
+
+// Cloudinary 설정
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+// 이미지를 업로드하고 영구 URL을 반환하는 함수
+async function uploadToCloudinary(imageUrl, fileName) {
+  try {
+    // 노션 S3 링크를 Cloudinary로 직접 전달하여 업로드
+    const result = await cloudinary.uploader.upload(imageUrl, {
+      public_id: `notion_blog/${fileName}`, // 폴더 구조 지정 가능
+      overwrite: true
+    });
+    return result.secure_url; // 영구적인 https 주소 반환
+  } catch (error) {
+    console.error('Cloudinary Upload Error:', error);
+    return imageUrl; // 실패 시 원본 링크 유지
+  }
+}
 
 const NOTION_TOKEN = process.env.NOTION_AUTH_TOKEN;
 const DATABASE_ID = process.env.NOTION_DATABASE_ID;
