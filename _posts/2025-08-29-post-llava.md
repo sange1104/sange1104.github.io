@@ -1,7 +1,7 @@
 ---
 title: "LLaVA: Large Language and Vision Assistant"
 date: 2025-08-29
-categories: blog
+categories: paper-review
 tags: [mllm, vision-language]
 ---
   

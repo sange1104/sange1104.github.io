@@ -1,7 +1,7 @@
 ---
 title: "Visual CoT: Advancing Multi-Modal Language Models with a Comprehensive Dataset and Benchmark for Chain-of-Thought Reasoning"
 date: 2026-01-05
-categories: [blog]
+categories: [paper-review]
 tags: [mllm, vision-language]
 ---
 

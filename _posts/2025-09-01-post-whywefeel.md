@@ -1,7 +1,7 @@
 ---
 title: "Why We Feel: Breaking Boundaries in Emotional Reasoning with Multimodal Large Language Models"
 date: 2025-09-01
-categories: blog
+categories: paper-review
 tags: [mllm, vision-language, emotion-mllm]
 --- 
 
