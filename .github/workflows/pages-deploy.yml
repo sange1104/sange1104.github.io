@@ -19,7 +19,7 @@ on:
   workflow_dispatch:
   
   workflow_run:
-    workflows: ["Sync Notion posts"]
+    workflows: ["Sync Notion posts (read-only)"]
     types:
       - completed
 
