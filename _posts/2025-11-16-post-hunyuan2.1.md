@@ -1,7 +1,7 @@
 ---
 title: "Hunyuan3D 2.1: From Images to High-Fidelity 3D Assets with Production-Ready PBR Material"
 date: 2025-11-16
-categories: paper-review
+categories: [paper-review, 3d-generation]
 tags: [3d, 3d-generation]
 ---  
 

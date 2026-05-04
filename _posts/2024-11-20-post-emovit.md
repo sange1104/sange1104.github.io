@@ -1,7 +1,7 @@
 ---
 title: "EmoVIT: Revolutionizing Emotion Insights with Visual Instruction Tuning"
 date: 2024-11-20
-categories: paper-review
+categories: [paper-review, emotion-mllm]
 tags: [mllm, vision-language, emotion-mllm]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Chain-of-Visual-Thought: Teaching VLMs to See and Think Better with Continuous Visual Tokens"
 date: 2026-01-31
-categories: [paper-review]
+categories: [paper-review, vision-language]
 tags: [mllm, vision-language]
 ---
 

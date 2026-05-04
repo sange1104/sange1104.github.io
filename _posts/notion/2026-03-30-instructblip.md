@@ -1,7 +1,7 @@
 ---
 title: "InstructBLIP: Towards General-purpose Vision-Language Models with Instruction Tuning"
 date: 2026-03-30
-categories: [paper-review]
+categories: [paper-review, vision-language]
 tags: [mllm, vision-language]
 ---
 

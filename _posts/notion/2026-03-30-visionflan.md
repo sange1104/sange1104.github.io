@@ -1,7 +1,7 @@
 ---
 title: "Vision-Flan: Scaling Human-Labeled Tasks in Visual Instruction Tuning"
 date: 2026-03-30
-categories: [paper-review]
+categories: [paper-review, vision-language]
 tags: [mllm, vision-language]
 ---
 
