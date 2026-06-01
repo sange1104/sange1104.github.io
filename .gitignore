@@ -24,3 +24,12 @@ node_modules
 # Misc
 _sass/vendors
 assets/js/dist
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk

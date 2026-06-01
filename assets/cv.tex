@@ -1,0 +1,205 @@
+% =====================================================================
+% SangEun Lee — Curriculum Vitae
+% Compile with: pdflatex cv.tex   (or xelatex / latexmk -pdf cv.tex)
+% Output: cv.pdf  -> drop into assets/cv.pdf for the website
+% =====================================================================
+
+\documentclass[10pt,a4paper]{article}
+
+% ---------- packages ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{etoolbox}
+
+% ---------- colors ----------
+\definecolor{darktext}{HTML}{111827}
+\definecolor{midgray}{HTML}{6B7280}
+\definecolor{accent}{HTML}{1F2937}
+
+% ---------- hyperref ----------
+\hypersetup{
+  colorlinks=true,
+  urlcolor=accent,
+  linkcolor=accent
+}
+
+% ---------- section format ----------
+\titleformat{\section}
+  {\large\bfseries\color{darktext}}
+  {}{0pt}{}[\vspace{2pt}\titlerule]
+\titlespacing*{\section}{0pt}{10pt}{6pt}
+
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+% ---------- helpers ----------
+\newcommand{\cvheader}[1]{%
+  \begin{center}
+    {\Huge\bfseries\color{darktext} #1}
+  \end{center}}
+
+\newcommand{\contactline}[1]{%
+  \begin{center}{\small\color{midgray} #1}\end{center}}
+
+% Title + dates on the same line
+\newcommand{\entry}[2]{%
+  \noindent\textbf{#1}\hfill{\small\color{midgray} #2}\par}
+
+% Sub-line (e.g. institution / venue + extra notes)
+\newcommand{\subentry}[2]{%
+  \noindent{\small #1}\hfill{\small\color{midgray} #2}\par\vspace{2pt}}
+
+% =====================================================================
+\begin{document}
+
+\cvheader{SangEun Lee}
+
+\contactline{%
+  AI Researcher \textperiodcentered{} ETRI, South Korea \\
+  \href{mailto:sange1104@etri.re.kr}{sange1104@etri.re.kr} \quad
+  \href{https://github.com/sange1104}{github.com/sange1104} \quad
+  \href{https://scholar.google.co.kr/citations?hl=ko&user=BHL0tcUAAAAJ}{Google Scholar} \quad
+  \href{https://sange1104.github.io}{sange1104.github.io}
+}
+
+% ---------------------------------------------------------------------
+\section*{Research Interests}
+Spatial intelligence; multimodal reasoning; 3D generative AI.
+Building AI systems that understand, reason about, and generate complex 3D
+environments from multimodal observations — with prior work in visual emotion
+reasoning via vision-language models.
+
+% ---------------------------------------------------------------------
+\section*{Education}
+
+\entry{M.Sc. in Applied Artificial Intelligence}{Sept.\ 2021 -- Feb.\ 2023}
+\subentry{Sungkyunkwan University, Seoul, South Korea}{Major GPA 4.25 / 4.5}
+\subentry{Advisor: Prof.\ Eunil Park}{}
+\vspace{4pt}
+
+\entry{B.S. in Applied Artificial Intelligence}{Mar.\ 2018 -- Aug.\ 2021}
+\subentry{Sungkyunkwan University, Seoul, South Korea}{Major GPA 4.33 / 4.5, Cum.\ 4.24 / 4.5}
+\subentry{\textit{Summa Cum Laude}}{}
+
+% ---------------------------------------------------------------------
+\section*{Experience}
+
+\entry{AI Researcher \textperiodcentered{} ETRI}{Jan.\ 2023 -- Present}
+\subentry{Research on 3D object generation, structure-aware 3D representation
+learning, and image generation with diffusion models.}{}
+\vspace{4pt}
+
+\entry{Research Assistant \textperiodcentered{} KT R\&D Center}{Jul.\ 2022 -- Aug.\ 2022}
+\subentry{Improvement of question-answering systems via contrastive learning.}{}
+
+% ---------------------------------------------------------------------
+\section*{Awards \& Honors}
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+  \item \textbf{2nd Place}, ABAW VA Prediction Challenge @ CVPR 2026
+  \item \textbf{1st Place}, ABAW VA Prediction Challenge @ ICCV 2025
+  \item \textbf{Outstanding Presentation Paper Award},
+    Korea Computer Congress, 2023
+  \item \textbf{Honorable Mention}, S-HERO Practical Problem-Solving
+    Competition, Sungkyunkwan University, 2021
+  \item \textbf{2nd Prize}, In-school Software Development with AI Contest,
+    Sungkyunkwan University, 2021
+  \item \textbf{3rd Prize}, Bookathon Contest, Sungkyunkwan University, 2020
+  \item \textbf{2nd Prize}, Lifestyle Improvement App Development Contest,
+    Sungkyunkwan University, 2020
+  \item \textit{Summa Cum Laude}, Sungkyunkwan University, 2021
+\end{itemize}
+
+% ---------------------------------------------------------------------
+\section*{Publications}
+\small\textit{$\dagger$ Equal contribution. \quad * Corresponding author.}\normalsize\par
+\vspace{4pt}
+
+\textit{Conference}
+\begin{enumerate}[leftmargin=*,labelsep=6pt,itemsep=3pt,label={[C\arabic*]}]
+  \item \textbf{S.\ Lee}, W.\ Chae, H.\ Yoo, K.\ Kim, N.\ Kim, H.\ Kim.
+    ``Refining Image-to-3D Foundation Models via Geometric Supervision for
+    Industrial Plant Reconstruction.'' \textit{AI4RWC, CVPR Workshop}, 2026.
+  \item Y.\ Lee$^\dagger$, \textbf{S.\ Lee}$^\dagger$, J.\ Cha, E.\ Park*.
+    ``SAGE: Stage-Adaptive Guided Reliability Modeling for Continuous
+    Valence-Arousal Estimation.'' \textit{ABAW, CVPR Workshop}, 2026.
+  \item \textbf{S.\ Lee}, Y.\ Lee, E.\ Park*, W.\ Chae.
+    ``MASP: Multi-Aspect Guided Emotion Reasoning with Soft Prompt Tuning in
+    Vision-Language Models.'' \textit{AAAI}, 2026.
+  \item Y.\ Lee, \textbf{S.\ Lee}, C.\ Park, J.\ Cha, J.\ Yang, E.\ Park.
+    ``BOVIS: Bias-Mitigated Object-Enhanced Visual Emotion Analysis.''
+    \textit{CIKM}, 2025.
+  \item Y.\ Lee, \textbf{S.\ Lee}, C.\ Park, J.\ Cha, E.\ Park*.
+    ``Dynamic Temporal Gating Networks for Cross-Modal Valence-Arousal
+    Estimation.'' \textit{ABAW, ICCV Workshop}, 2025.
+  \item \textbf{S.\ Lee}, Y.\ Lee, E.\ Park*.
+    ``EmoVLM-KD: Fusing Distilled Expertise with Vision-Language Models for
+    Visual Emotion Analysis.'' \textit{ABAW, CVPR Workshop}, 2025.
+  \item \textbf{S.\ Lee}, W.\ Chae, H.\ Kim.
+    ``Retrieve-and-generate: Image-to-3D framework with mesh retrieval and
+    texture generation.'' \textit{ICT Convergence}, 2024.
+  \item H.\ Yu, \textbf{S.\ Lee}, B.\ Yeo, J.\ Han, E.\ Park*, S.\ Pack.
+    ``Towards a Lightweight Object Detection through Model Pruning
+    Approaches.'' \textit{ICT Convergence}, 2024.
+  \item \textbf{S.\ Lee}, W.\ Chae, H.\ Kim.
+    ``Generating Webtoon Scene Images with Latent Diffusion Models.''
+    \textit{MITA}, 2023.
+  \item \textbf{S.\ Lee}$^\dagger$, S.\ Oh$^\dagger$, M.\ Kim, E.\ Park*.
+    ``Measuring Embedded Human-like Biases in Face Recognition Models.''
+    \textit{AIBSD Workshop, AAAI}, 2022.
+\end{enumerate}
+
+\vspace{4pt}
+\textit{Journal}
+\begin{enumerate}[leftmargin=*,labelsep=6pt,itemsep=3pt,label={[J\arabic*]}]
+  \item \textbf{S.\ Lee}, S.\ Kim, Y.\ Lee, J.\ Yang, E.\ Park*.
+    ``Enhancing Dimensional Image Emotion Detection with a Low-resource
+    Dataset via Two-stage Training.''
+    \textit{IEEE Trans.\ on Cognitive and Developmental Systems}, 2025.
+  \item \textbf{S.\ Lee}, S.\ Kim, Y.\ Chu, J.\ Choi, E.\ Park*.
+    ``EAE-GAN: Emotion-Aware Emoji GAN for Computational Modeling of Diverse
+    and Fine-Grained Human Emotions.''
+    \textit{IEEE Trans.\ on Computational Social Systems}, 11(3):3862--3872, 2024.
+  \item \textbf{S.\ Lee}, C.\ Ryu, E.\ Park*.
+    ``OSANet: Object Semantic Attention Network for Visual Sentiment
+    Analysis.''
+    \textit{IEEE Trans.\ on Multimedia}, 25:7139--7148, 2023.
+  \item \textbf{S.\ Lee}, D.\ Jeong, E.\ Park*.
+    ``MultiEmo: Multi-task framework for emoji prediction.''
+    \textit{Knowledge-Based Systems}, 2022.
+  \item J.\ Kim, J.\ Aum, \textbf{S.\ Lee}, Y.\ Jang*, E.\ Park*, D.\ Choi.
+    ``FibVID: Comprehensive fake news diffusion dataset during the COVID-19
+    period.''
+    \textit{Telematics and Informatics}, 64:101688, 2021.
+  \item W.\ Choi, J.\ Kim, \textbf{S.\ Lee}, E.\ Park*.
+    ``Smart home and Internet of Things: A bibliometric study.''
+    \textit{Journal of Cleaner Production}, 301:126908, 2021.
+\end{enumerate}
+
+% ---------------------------------------------------------------------
+\section*{Teaching Experience}
+
+\entry{Undergraduate Teaching Assistant \textperiodcentered{} Sungkyunkwan University}{Fall 2021}
+\subentry{``Problem Solving and Algorithm'' (freshmen mandatory course).}{}
+\vspace{4pt}
+
+\entry{Undergraduate Teaching Assistant \textperiodcentered{} Sungkyunkwan University}{Spring 2021}
+\subentry{``Computational Thinking and Coding'' (freshmen mandatory course).}{}
+
+% ---------------------------------------------------------------------
+\section*{Skills}
+\textbf{Languages:} Korean (native), English (TOEIC Speaking AL) \\
+\textbf{Tools \& Programming Languages:} Python, Kotlin, C, R, \LaTeX{}, Git, Markdown \\
+\textbf{Machine Learning Frameworks:} PyTorch, TensorFlow, Keras, scikit-learn
+
+\vspace{14pt}
+\hrule
+\vspace{4pt}
+\begin{center}\small\color{midgray} Last updated: \today\end{center}
+
+\end{document}

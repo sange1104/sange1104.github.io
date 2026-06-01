@@ -1,0 +1,183 @@
+# Research projects rendered as a vertical timeline on the Projects tab.
+# Each entry: title, period, goal (1-2 lines), role[], results[], tech[], thumbnail (optional)
+
+- title: "OCRGate: OCR + VLM-Based Financial Document Verification System"
+  period: "2026.03"
+  thumbnail: /assets/img/projects/ocrgate-fig.jpg
+  goal: >-
+    Built <span class="hl">an automated document verification pipeline</span>
+    that combines OCR, rule-based validation, and selective VLM fallback for
+    robust financial document processing.
+  role:
+    - >-
+      Designed a <span class="hl">4-stage validation pipeline</span> for
+      document classification, field verification, and quality assessment.
+    - >-
+      Developed an <span class="hl">OCR-first + selective VLM fallback
+      framework</span> using PaddleOCR, Qwen-VL, and confidence-based routing.
+    - >-
+      Built an end-to-end service with <span class="hl">FastAPI, SSE streaming,
+      and a web-based review interface</span> for real-time document inspection.
+  results:
+    - >-
+      Reduced <span class="hl">manual review requests by 39%</span> using
+      confidence-based OCR–VLM routing.
+    - >-
+      Achieved a <span class="hl">94.7% Safe Pass Rate</span>.
+  tech:
+    - Python
+    - FastAPI
+    - PyTorch
+    - Transformers
+    - Streamlit
+    - Docker
+
+- title: Fine-Tuning Hunyuan3D 2.1 for Industrial Plant Domain
+  period: "2025.01 – present"
+  thumbnail: /assets/img/projects/finetuning_hunyuan-fig.jpg
+  goal: >-
+    Build <span class="hl">a domain-specialized image-to-3D generation model tailored
+    for industrial plant environments</span>, where complex mechanical structures
+    require higher geometric accuracy and visual consistency compared to generic
+    pretrained models.
+  role:
+    - >-
+      Led <span class="hl">geometry-aware fine-tuning of Hunyuan3D</span> for
+      industrial image-to-3D generation, addressing structural defects, topology
+      failures, and reconstruction artifacts.
+    - >-
+      Designed a <span class="hl">two-stage supervision framework combining surface
+      normal alignment and SDF-based geometric refinement</span> without modifying
+      the base architecture.
+    - >-
+      Built a <span class="hl">1,000-asset industrial benchmark</span> from ABC
+      and Objaverse datasets through semantic and shape-aware filtering for
+      evaluation and validation.
+  results:
+    - >-
+      Improved reconstruction quality by <span class="hl">+0.34 IoU and +0.35
+      F-score</span> while reducing Chamfer Distance and improving semantic
+      similarity on industrial assets.
+  tech:
+    - PyTorch
+    - Diffusers
+
+- title: Structure-Aware Fine-Grained 3D Multimodal Embedding
+  period: "2025.07 – present"
+  thumbnail: /assets/img/projects/multimodal_embed-fig.png
+  goal: >-
+    Develop a structure-aware 3D multimodal embedding that maintains semantic alignment
+    while <span class="hl">capturing intra-class geometric variations</span>, addressing
+    the limitations of existing approaches that fail <span class="hl">to differentiate
+    fine-grained structural differences within the same category.</span>
+  role:
+    - >-
+      Designed a <span class="hl">geometry-aware intra-class hard negative sampling
+      strategy</span> to encourage the model to distinguish structurally different
+      samples within the same semantic class.
+    - >-
+      Built a <span class="hl">GPT-based text generation pipeline</span> that produces
+      multi-view, part-level descriptions to ensure structural cues are reflected in
+      the text modality.
+    - >-
+      Proposed and implemented a joint learning framework combining multimodal
+      contrastive loss (3D–text, 3D–image) with <span class="hl">a structure-aware
+      triplet loss applied on the 3D branch to enhance geometry-sensitive
+      representation learning.</span>
+  results:
+    - Improved FG3D chair fine-grained classification Top-1 accuracy by +2% compared to the OpenShape baseline.
+  tech:
+    - PyTorch
+    - HuggingFace Transformers
+
+- title: Retrieval-Augmented 3D Mesh Generation Pipeline
+  period: "2024.01 – 2024.12"
+  thumbnail: /assets/img/projects/ret_and_gen-fig.png
+  goal: >-
+    Address limitations of end-to-end image-to-3D generation models (slow inference and
+    insufficient asset quality for industrial use) by building a retrieval-based approach
+    that <span class="hl">first finds the closest 3D mesh from a large-scale database
+    using multimodal embeddings, then generates texture map conditioned on the retrieved
+    mesh.</span>
+  role:
+    - >-
+      Developed an image-to-3D retrieval pipeline using <span class="hl">OpenShape
+      multimodal embeddings</span> to effectively match input images with the most
+      similar 3D mesh assets.
+    - >-
+      Evaluated multiple texture generation approaches, selected the best-performing
+      model, and integrated it with the retrieval module to build a full end-to-end
+      generation system.
+  results:
+    - 1 domestic conference paper, 1 international conference paper, and 1 domestic patent.
+  tech:
+    - PyTorch
+    - Diffusers
+
+- title: Webtoon Generation Automation System
+  period: "2023.01 – 2023.12"
+  thumbnail: /assets/img/projects/deeptoon_fig.png
+  goal: >-
+    Develop a system enabling webtoon creators <span class="hl">to generate character
+    images based on prompts/images through generative models</span>, including
+    style-conditioned generation trained on a specific artist's drawing style.
+  role:
+    - >-
+      <span class="hl">Fine-tuned Stable Diffusion 1.5 using a webtoon character dataset
+      via DreamBooth to learn consistent artist styles.</span>
+    - >-
+      Integrated <span class="hl">ControlNet</span> to support pose, facial expression,
+      and background editing.
+    - >-
+      Developed key modules of a web-based creative workflow tool supporting
+      conti → sketch and sketch → coloring pipelines.
+  results:
+    - Achieved +0.1 LPIPS improvement and +0.71 recall in character identity recognition compared to the baseline model.
+    - Technology showcased at the 2023 Bucheon International Comics Festival (BICOF).
+    - 1 domestic journal paper, 1 domestic conference paper, 1 international conference paper, and 1 domestic patent.
+  tech:
+    - PyTorch
+    - HuggingFace
+    - Diffusers
+    - ControlNet
+
+- title: Contrastive Learning for Knowledge-Grounded Dialogue Generation
+  period: "2022.07 – 2022.08"
+  hide_thumb: true
+  thumbnail:
+  goal: >-
+    Improve the ability of knowledge-grounded dialogue models <span class="hl">to
+    distinguish relevant information from irrelevant knowledge using a contrastive
+    learning approach.</span>
+  role:
+    - >-
+      Built the experimental environment for <span class="hl">contrastive learning</span>
+      and <span class="hl">adversarial perturbation–based training.</span>
+    - >-
+      Supported benchmarking and ablation studies on the Wizard of Wikipedia dataset,
+      including evaluation and comparative analysis against baseline models.
+  results:
+    - Achieved measurable improvement with +6% increase in KF1 over the baseline.
+  tech:
+    - PyTorch
+
+- title: AI-Based Landmine Detection Model Development
+  period: "2021.06 – 2022.12"
+  hide_thumb: true
+  thumbnail:
+  goal: >-
+    Build a <span class="hl">5-class object detection model</span> capable of identifying
+    landmine type and location from Ground-Penetrating Radar (GPR) imagery to support
+    real-world field detection and reduce manual inspection workload.
+  role:
+    - >-
+      Fine-tuned a <span class="hl">Faster R-CNN object detection model</span> using
+      a custom GPR dataset.
+    - >-
+      Designed preprocessing and augmentation strategies optimized for unique signal
+      and texture characteristics in GPR imagery.
+  results:
+    - Successfully achieved the target recall score.
+  tech:
+    - PyTorch
+    - OpenCV

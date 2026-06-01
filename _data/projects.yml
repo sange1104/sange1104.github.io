@@ -1,52 +1,58 @@
-- title: "MASP: Multi-Aspect Guided Emotion Reasoning with Soft Prompt Tuning in Vision-Language Models."
+- title: "Refining Image-to-3D Foundation Models via Geometric Supervision for Industrial Plant Reconstruction"
+  authors: Lee, S., Chae, W., Yoo, H., Kim, K., Kim, N., & Kim, H.
+  venue: CVPR Workshop (AI4RWC) 2026
+  url: https://openaccess.thecvf.com/content/CVPR2026W/AI4RWC/html/Lee_Refining_Image-to-3D_Foundation_Models_via_Geometric_Supervision_for_Industrial_Plant_CVPRW_2026_paper.html
+  image: assets/img/projects/finetuning_hunyuan-fig.jpg
+
+- title: "MASP: Multi-Aspect Guided Emotion Reasoning with Soft Prompt Tuning in Vision-Language Models"
   authors: Lee, S., Lee, Y., Park, E.*, & Chae W
-  venue: AAAI 2026 
+  venue: AAAI 2026
   url: https://ojs.aaai.org/index.php/AAAI/article/view/37168
   image: assets/img/projects/masp.jpg
 
-- title: "BOVIS: Bias-Mitigated Object-Enhanced Visual Emotion Analysis."
+- title: "BOVIS: Bias-Mitigated Object-Enhanced Visual Emotion Analysis"
   authors: Lee, Y., Lee, S., Park, C., Cha, J., Yang, J., & Park, E*
   venue: CIKM 2025 
   url: https://dl.acm.org/doi/10.1145/3746252.3761180
   image: assets/img/projects/bovis.jpg
   
-- title: "Dynamic Temporal Gating Networks for Cross-Modal Valence-Arousal Estimation."
+- title: "Dynamic Temporal Gating Networks for Cross-Modal Valence-Arousal Estimation"
   authors: Lee, Y., Lee, S., Park, C., Cha, J., & Park, E*
   venue: ICCV Workshop 2025 
   url: https://openaccess.thecvf.com/content/ICCV2025W/ABAW/html/Lee_Dynamic_Temporal_Gating_Networks_for_Cross-Modal_Valence-Arousal_Estimation_ICCVW_2025_paper.html
   image: assets/img/projects/tagf.jpg
   
-- title: "EmoVLM-KD: Fusing Distilled Expertise with Vision-Language Models for Visual Emotion Analysis."
+- title: "EmoVLM-KD: Fusing Distilled Expertise with Vision-Language Models for Visual Emotion Analysis"
   authors: Lee, S., Lee, Y., Park, E*
   venue: CVPR Workshop 2025 
   url: https://openaccess.thecvf.com/content/CVPR2025W/ABAW/html/Lee_EmoVLM-KD_Fusing_Distilled_Expertise_with_Vision-Language_Models_for_Visual_Emotion_CVPRW_2025_paper.html
   image: assets/img/projects/emovlm_kd.jpg
 
-- title: "Enhancing Dimensional Image Emotion Detection with a Low-resource Dataset via Two-stage Training."
+- title: "Enhancing Dimensional Image Emotion Detection with a Low-resource Dataset via Two-stage Training"
   authors: Lee, S., Kim, S., Lee, Y., Yang, J., & Park, E.* 
   venue: IEEE Transactions on Cognitive and Developmental Systems
   url: https://ieeexplore.ieee.org/abstract/document/10685506
   image: assets/img/projects/enhancing.jpg
 
-- title: "EAE-GAN: Emotion-Aware Emoji Generative Adversarial Network for Computational Modeling Diverse and Fine-Grained Human Emotions."
+- title: "EAE-GAN: Emotion-Aware Emoji Generative Adversarial Network for Computational Modeling Diverse and Fine-Grained Human Emotions"
   authors: Lee, S., Kim, S., Chu, Y., Choi, J., Park, E.*
   venue: IEEE Transactions on Computational Social Systems
   url: https://ieeexplore.ieee.org/abstract/document/10355933
   image: assets/img/projects/eaegan.jpg
 
-- title: "OSANet: Object Semantic Attention Network for Visual Sentiment Analysis."
+- title: "OSANet: Object Semantic Attention Network for Visual Sentiment Analysis"
   authors: Lee, S., Ryu, C., Park, E.*
   venue: IEEE Transactions on Multimedia
   url: https://ieeexplore.ieee.org/abstract/document/9930660
   image: assets/img/projects/osanet.jpg
  
-- title: "MultiEmo: multi-task framework for emoji prediction."
+- title: "MultiEmo: multi-task framework for emoji prediction"
   authors: Lee, S., Jeong, D., Park, E.* 
   venue: Knowledge-Based Systems
   url: https://www.sciencedirect.com/science/article/abs/pii/S0950705122001794
   image: assets/img/projects/multiemo.jpg
   
-- title: "Measuring Embedded Human-like Biases in Face Recognition Models."
+- title: "Measuring Embedded Human-like Biases in Face Recognition Models"
   authors: Lee, S., Oh, S., Kim, M., Park, E.* 
   venue: AAAI Workshop 2022
   url: https://www.mdpi.com/2813-0324/3/1/2

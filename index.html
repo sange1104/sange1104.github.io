@@ -1,121 +1,249 @@
 ---
-layout: page 
+layout: page
 permalink: /
 title: "Home"
-icon: fas fa-user
----
-<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css">
-{% capture md %}
-## 👋 Introduction
-
-I’m **SangEun Lee**, a research scientist at ETRI in South Korea. My research aims to develop robust vision-language models capable of understanding, reasoning, and generating in complex real-world scenarios. I am particularly interested in **emotion recognition**, **3D vision**, and **multimodal representation learning**, with a focus on designing effective data and learning frameworks for enhanced interpretability, efficiency, and generalization.
- 
-
+icon: fas fa-home
 ---
 
+<style>
+/* Hide the page-layout's auto title (e.g. "Home" h1) on the home page only */
+.dynamic-title { display: none !important; }
 
-## 🌐 Contact
+.home-hero {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 28px;
+  align-items: center;
+  padding: 8px 0 8px;
+}
+.home-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #e5e7eb;
+}
+.home-name {
+  margin: 0 0 4px;
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.home-role {
+  color: #6b7280;
+  margin: 0 0 12px;
+  font-size: .98rem;
+}
+.home-statement {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+.home-statement + .home-statement { margin-top: 10px; }
+.home-statement strong { color: #111827; font-weight: 600; }
+.home-links {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: .88rem;
+  color: inherit !important;
+  text-decoration: none !important;
+  background: var(--card-bg, #fff);
+  transition: all .15s ease;
+}
+.home-btn:hover {
+  background: #111827;
+  color: #fff !important;
+  border-color: #111827;
+}
+.home-btn.primary {
+  background: #111827;
+  color: #fff !important;
+  border-color: #111827;
+}
+.home-btn.primary:hover {
+  background: #000;
+  border-color: #000;
+}
 
-- **Email:** [sange1104@etri.re.kr](mailto:sange1104@etri.re.kr)
-- [**GitHub**](https://github.com/sange1104)&nbsp;&nbsp;&nbsp;[**Google Scholar**](https://scholar.google.co.kr/citations?hl=ko&user=BHL0tcUAAAAJ)   
+.home-section-heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 36px 0 14px;
+  color: #111827;
+  letter-spacing: .2px;
+}
 
+.interest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+.interest-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px 18px;
+  background: var(--card-bg, #fff);
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.interest-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.05);
+  border-color: #d1d5db;
+}
+.interest-icon {
+  font-size: 1.3rem;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+.interest-title {
+  font-weight: 700;
+  margin: 0 0 4px;
+  font-size: 1rem;
+  color: #111827;
+}
+.interest-desc {
+  font-size: .88rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.45;
+}
 
----
+.news { display: flex; flex-direction: column; }
+.news-item {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: .95rem;
+  line-height: 1.55;
+}
+.news-item:last-child { border-bottom: none; }
+.news-date {
+  font-size: .76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: #6b7280;
+  padding-top: 3px;
+}
+.news-text { color: #374151; }
+.news-text strong { color: #111827; font-weight: 600; }
+.news-text a {
+  color: #374151;
+  text-decoration: underline;
+  text-decoration-color: #d1d5db;
+}
+.news-text a:hover { color: #111827; text-decoration-color: #6b7280; }
+@media (max-width: 540px) {
+  .news-item { grid-template-columns: 1fr; gap: 2px; padding: 8px 0; }
+  .news-date { padding-top: 0; }
+}
 
+@media(max-width: 720px) {
+  .home-hero { grid-template-columns: 1fr; text-align: center; gap: 18px; }
+  .home-avatar { margin: 0 auto; width: 120px; height: 120px; }
+  .home-links { justify-content: center; }
+}
+@media(prefers-color-scheme: dark) {
+  .home-role, .interest-desc { color: #9ca3af; }
+  .home-statement strong,
+  .home-section-heading,
+  .interest-title { color: #f3f4f6; }
+  .home-btn { border-color: #374151; background: #111827; }
+  .home-btn:hover { background: #f3f4f6; color: #111827 !important; border-color: #f3f4f6; }
+  .home-btn.primary { background: #f3f4f6; color: #111827 !important; border-color: #f3f4f6; }
+  .home-btn.primary:hover { background: #fff; border-color: #fff; }
+  .interest-card { border-color: #374151; background: #111827; }
+  .interest-card:hover { border-color: #4b5563; }
+  .interest-icon { color: #9ca3af; }
+  .home-avatar { border-color: #374151; }
+  .news-item { border-color: #1f2937; }
+  .news-date { color: #9ca3af; }
+  .news-text { color: #d1d5db; }
+  .news-text strong { color: #f3f4f6; }
+  .news-text a { color: #9ca3af; text-decoration-color: #4b5563; }
+  .news-text a:hover { color: #f3f4f6; text-decoration-color: #9ca3af; }
+}
+</style>
 
-## 💼 Experiences
-
-**AI Researcher**, ETRI  |  *2023.01. – Present*  
-Research on 3D object generation and webtoon-style image generation using diffusion models
-
-**Research Assistant**, KT R&D Center  |   *2022.07. – 2022.08.*  
-Research for improvement of Question Answering system with contrastive learning 
-
----
-
-## 🏆 Awards & Honors
-- <span style="background:#ff7675;color:white;font-size:0.75em;border-radius:4px;padding:2px 6px;margin-left:4px;">NEW</span> **2nd place** in ABAW VA prediction challenge @ CVPR 2026
-- **1st place** in ABAW VA prediction challenge @ ICCV 2025, [media](https://www.skku.edu/skku/campus/skk_comm/news.do?mode=view&articleNo=130748)
-- **Outstanding Presentation Paper Award** (우수발표논문상) @ Korea Computer Congress, 2023
-- **Honorable Mention** in S-HERO Practical Problem-Solving Competition @ Sungkyunkwan University, 2021
-- **2nd Prize** in In-school software development with AI contest @ Sungkyunkwan University, 2021
-- **3rd Prize** in 2020 Bookathon Contest @ Sungkyunkwan University, 2020 
-- **2nd Prize** in Lifestyle Improvement App Development Contest @ Sungkyunkwan University, 2020 
- 
---- 
-
-## 🔧 Projects
-
-<div id="project-list">
+<section class="home-hero">
+  <img class="home-avatar" src="{{ '/assets/img/avatar.png' | relative_url }}" alt="SangEun Lee">
+  <div>
+    <h1 class="home-name">SangEun Lee</h1>
+    <p class="home-role">Research Scientist · ETRI, South Korea</p>
+    <p class="home-statement">
+      Hi, glad you stopped by! I'm currently a researcher at <strong>ETRI</strong>, and I received my M.Sc. in
+      Applied Artificial Intelligence from <strong>Sungkyunkwan University</strong>, where I was advised by
+      <a href="https://sites.google.com/view/eunil" target="_blank" rel="noopener"><strong>Prof. Eunil Park</strong></a>.
+    </p>
+    <p class="home-statement">
+      My current focus is on <strong>spatial intelligence</strong>, <strong>multimodal reasoning</strong>, and <strong>3D generative AI</strong> —
+      building on prior work in visual emotion reasoning with vision-language models.
+    </p>
+    <p class="home-statement">
+      Always open to discussing research, collaborations, or new ideas — feel free to <a href="mailto:sange1104@etri.re.kr">reach out</a>!
+    </p>
+    <div class="home-links">
+      <a class="home-btn primary" href="{{ '/assets/cv.pdf' | relative_url }}" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i> CV (PDF)</a>
+      <a class="home-btn" href="mailto:sange1104@etri.re.kr"><i class="fas fa-envelope"></i> Email</a>
+      <a class="home-btn" href="https://scholar.google.co.kr/citations?hl=ko&user=BHL0tcUAAAAJ" target="_blank" rel="noopener"><i class="fas fa-graduation-cap"></i> Google Scholar</a>
+      <a class="home-btn" href="https://github.com/sange1104" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
     </div>
+  </div>
+</section>
 
-<script src="{{ site.baseurl }}/assets/js/projects.js"></script>
-<script src="{{ site.baseurl }}/assets/js/script.js" defer></script>
+<h2 class="home-section-heading">Research Interests</h2>
 
+<div class="interest-grid">
+  <div class="interest-card">
+    <div class="interest-icon"><i class="fas fa-cube"></i></div>
+    <p class="interest-title">Spatial Intelligence</p>
+    <p class="interest-desc">Spatial reasoning and scene-level understanding for AI systems that perceive and act in 3D environments.</p>
+  </div>
+  <div class="interest-card">
+    <div class="interest-icon"><i class="fas fa-brain"></i></div>
+    <p class="interest-title">Multimodal Reasoning</p>
+    <p class="interest-desc">Reasoning across image, 3D, and text modalities — designing VLMs and multimodal frameworks for complex tasks.</p>
+  </div>
+  <div class="interest-card">
+    <div class="interest-icon"><i class="fas fa-cubes"></i></div>
+    <p class="interest-title">3D Generative AI</p>
+    <p class="interest-desc">Scene-level 3D generation, mesh refinement, and domain adaptation of 3D foundation models.</p>
+  </div>
+</div>
 
+<h2 class="home-section-heading">Recent News</h2>
 
----
-
-## 📄 Publications
-#### International (J: Journal / C: Conference)
-- <span style="background:#ff7675;color:white;font-size:0.75em;border-radius:4px;padding:2px 6px;margin-left:4px;">NEW</span>   [C10] **Lee, S**., Chae, W., Yoo, H., Kim, K., Kim, N., & Kim, H. (2026). Refining Image-to-3D Foundation Models via Geometric Supervision for Industrial Plant Reconstruction. In Proceedings of the 2nd International Workshop on Vision Intelligence for Real-world Challenges (AI4RWC, CVPR Workshop '26), IEEE. (accepted)
-
-- <span style="background:#ff7675;color:white;font-size:0.75em;border-radius:4px;padding:2px 6px;margin-left:4px;">NEW</span>   [C9] Lee, Y.†, **Lee, S**.†, Cha, J., & Park, E.* (2026). SAGE: Stage-Adaptive Guided Reliability Modeling for Continuous Valence-Arousal Estimation. In Proceedings of 10th Workshop and Competition on Affective & Behavior Analysis in-the-wild (ABAW, CVPR Workshop '26), IEEE. (accepted) <sub>† Equal contribution</sub>
-
-- [C8] **Lee, S**., Lee, Y., Park, E.*, & Chae, W. (2026). MASP: Multi-Aspect Guided Emotion Reasoning with Soft Prompt Tuning in Vision-Language Models. In Proceedings of the AAAI Conference on Artificial Intelligence (AAAI '26), AAAI.
-
-- [C7] Lee, Y., **Lee, S**., Park, C., Cha, J., Yang, J., & Park, E. (2025). BOVIS: Bias-Mitigated Object-Enhanced Visual Emotion Analysis. In Proceedings of the 34th ACM International Conference on Information and Knowledge Management (CIKM '25), ACM.
-
-- [C6] Lee, Y., **Lee, S**., Park, C., Cha, J., & Park, E*. (2025). Dynamic Temporal Gating Networks for Cross-Modal Valence-Arousal Estimation. In Proceedings of the 9th Workshop and Competition on Affective & Behavior Analysis in-the-wild (ABAW, ICCV Workshop '25, pp. 61-70), IEEE.
-
-- [C5] **Lee, S**., Lee, Y., & Park, E.* (2025). EmoVLM-KD: Fusing Distilled Expertise with Vision-Language Models for Visual Emotion Analysis. In Proceedings of 8th Workshop and Competition on Affective & Behavior Analysis in-the-wild (ABAW, CVPR Workshop '25, pp. 5633-5642), IEEE.
-
-- [J6] **Lee, S**., Kim, S., Lee, Y., Yang, J., & Park, E.* (2025). Enhancing Dimensional Image Emotion Detection with a Low-resource Dataset via Two-stage Training. IEEE Transactions on Cognitive and Developmental Systems (SCIE, JCR 2023 IF=5.0, Q1 in Neuroscience).
-
-- [C4] **Lee, S**., Chae, W., Kim, H. (2024). Retrieve-and-generate: Image-to-3D framework with mesh retrieval and texture generation. In Proceedings of the 15th International Conference on ICT Convergence.
-
-- [J5] **Lee, S**., Kim, S., Chu, Y., Choi, J., Park, E*. (2024). EAE-GAN: Emotion-Aware Emoji Generative Adversarial Network for Computational Modeling Diverse and Fine-Grained Human Emotions. IEEE Transactions on Computational Social Systems, 11(3), 3862-3872 (SCIE, JCR 2022 IF=5.0, Q1 in Computer Science, Cybernetics)
-
-- [C3] Yu, H., **Lee, S**., Yeo, B., Han, J., Park, E*. Pack, S. (2024). Towards a Lightweight Object Detection through Model Pruning Approaches In Proceedings of the 14th International Conference on ICT Convergence. 
-
-- [C2] **Lee, S**., Chae, W., Kim, H. (2023). Generating Webtoon Scene Images with Latent Diffusion Models. In Proceedings of the 19th International Conference on Multimedia Information Technology and Applications.
-
-- [J4] **Lee, S**., Ryu, C., Park, E.* (2023) OSANet: Object Semantic Attention Network for Visual Sentiment Analysis. IEEE Transactions on Multimedia, 25, 7139-7148 (SCIE, JCR 2021 IF=8.182, Q1 in Computer Science, Information Systems).
-
-- [J3] **Lee, S**., Jeong, D., Park, E.* (2022) MultiEmo: multi-task framework for emoji prediction. Knowledge-Based Systems (SCIE, JCR 2020 IF=8.038, Q1 in Computer Science, Artificial Intelligence).
-
-- [C1] **Lee, S**.†, Oh, S.†, Kim, M., Park, E.* (2022). Measuring Embedded Human-like Biases in Face Recognition Models. In Proceedings of the 2022 Artificial Intelligence with Biased or Scarce Data Workshop (AIBSD '22). AAAI. <sub>† Equal contribution</sub>
-
-- [J2] Kim, J., Aum, J., **Lee, S**., Jang, Y*., Park, E.*, Choi, D. (2021) FibVID: Comprehensive fake news diffusion dataset during the COVID-19 period. Telematics and Informatics, 64, 101688 (SSCI, JCR 2020 IF=6.182, Q1 in Information Science \& Library Science).
-
-- [J1] Choi, W., Kim, J., **Lee, S**., Park, E.* (2021) Smart home and Internet of Things: A bibliometric study. Journal of Cleaner Production, 301, 126908 (SCIE, JCR 2020 IF=9.297, Q1 in Engineering, Environmental). 
-
-
-#### Domestic
-- **이상은**, 채원석, 유호영, 김낙우, 김현진, 플랜트 산업에서의 Image-to-3D 성능 향상을 위한 사전 이미지 처리 프레임워크, 2025 한국컴퓨터종합학술대회.
-
-- **이상은**, 채원석, 김현진, 메쉬 검색과 텍스처 생성이 결합된 단일 이미지 기반 3D 객체 복원 모델, 2024 한국컴퓨터종합학술대회.
-
-- **이상은**, 채원석, 김현진, (2024) 다양한 맥락에서의 웹툰 캐릭터 이미지 생성을 위한 잠재 확산 모델 재학습, 정보과학회 컴퓨팅의 실제 논문지 30권 2호, 70 - 76.
-
-- **이상은**, 채원석, 김현진, 잠재 확산 모델 재학습을 통한 맥락별 웹툰 캐릭터 이미지 생성 기술, 2023 한국컴퓨터종합학술대회.
-
-- **이상은**, 김지수, 김지나, 박은일*, 엔젤파스쿠알델포빌, 소셜 네트워크 서비스 내 비난과 혐오 전파에 대하여: COVID-19을 중심으로, 2021 한국HCI학회 학술대회.  
-
----
-
-## 🎓 Education
-
-**M.Sc. in Applied Artificial Intelligence**<br>
-Sungkyunkwan University, Seoul, South Korea  (*2021.09. – 2023.02.*)<br>
-Major GPA: 4.25/4.5
-
-
-**Bachelor of Applied Artificial Intelligence**<br>
-Sungkyunkwan University, Seoul, South Korea  (*2018.03. – 2021.08.*)<br>
-Major GPA: 4.33/4.5, Cumulative GPA: 4.24/4.5<br>
-Award: Graduating with Highest Honors (Summa Cum Laude)
-
-{% endcapture %}
-
-{{ md | markdownify }}
+<div class="news">
+  <div class="news-item">
+    <span class="news-date">Apr 2026</span>
+    <span class="news-text">
+      Our team won <strong>2nd place</strong> in the VA Prediction Challenge at <strong>ABAW</strong> (CVPR Workshop 2026).
+    </span>
+  </div>
+  <div class="news-item">
+    <span class="news-date">Apr 2026</span>
+    <span class="news-text">
+      Paper accepted to <strong>AI4RWC</strong> (CVPR Workshop 2026):
+      <em>Refining Image-to-3D Foundation Models via Geometric Supervision for Industrial Plant Reconstruction.</em>
+    </span>
+  </div>
+  <div class="news-item">
+    <span class="news-date">Nov 2025</span>
+    <span class="news-text">
+      Paper accepted to <strong>AAAI 2026</strong>:
+      <em>MASP: Multi-Aspect Guided Emotion Reasoning with Soft Prompt Tuning in Vision-Language Models.</em>
+    </span>
+  </div>
+</div>

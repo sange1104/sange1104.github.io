@@ -1,0 +1,59 @@
+<!-- Top Bar (customized: brand + 4 nav tabs + mobile hamburger) -->
+
+<header id="topbar-wrapper" class="flex-shrink-0" aria-label="Top Bar">
+  <div id="topbar" class="d-flex align-items-center justify-content-between h-100 px-3 px-lg-4">
+    <a href="{{ '/' | relative_url }}" class="topbar-brand">{{ site.title }}</a>
+
+    <nav class="topbar-nav-desktop" aria-label="Primary">
+      {% for tab in site.tabs %}
+        <a
+          href="{{ tab.url | relative_url }}"
+          class="topbar-nav-link{% if tab.url == page.url %} active{% endif %}"
+        >
+          {{ tab.title }}
+        </a>
+      {% endfor %}
+    </nav>
+
+    <button
+      type="button"
+      id="topbar-menu-trigger"
+      class="topbar-menu-btn"
+      aria-label="Menu"
+      aria-expanded="false"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+<nav id="topbar-mobile-menu" aria-label="Mobile">
+  <a
+    href="{{ '/' | relative_url }}"
+    class="topbar-mobile-link{% if page.layout == 'home' or page.url == '/' %} active{% endif %}"
+  >Home</a>
+  {% for tab in site.tabs %}
+    <a
+      href="{{ tab.url | relative_url }}"
+      class="topbar-mobile-link{% if tab.url == page.url %} active{% endif %}"
+    >{{ tab.title }}</a>
+  {% endfor %}
+</nav>
+
+<script>
+  (function () {
+    var btn = document.getElementById('topbar-menu-trigger');
+    var menu = document.getElementById('topbar-mobile-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', function (e) {
+      if (!menu.classList.contains('open')) return;
+      if (menu.contains(e.target) || btn.contains(e.target)) return;
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  })();
+</script>

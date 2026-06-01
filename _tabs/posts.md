@@ -1,205 +1,189 @@
 ---
 layout: page
 title: "Posts"
-icon: fas fa-fw fa-blog    
-order: 3                   
+icon: fas fa-fw fa-blog
+order: 4
 permalink: /posts/
 ---
 
 <style>
-.cat-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
-  margin: 20px 0;
-}
-.cat-card {
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 24px 20px;
-  background: var(--card-bg, #fff);
-  cursor: pointer;
-  transition: box-shadow .2s ease, transform .15s ease;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-.cat-card:hover {
-  box-shadow: 0 4px 16px rgba(0,0,0,.08);
-  transform: translateY(-2px);
-  text-decoration: none;
-  color: inherit;
-}
-.cat-card h2 {
-  margin: 0 0 6px;
-  font-size: 1.2rem;
-}
-.cat-card .cat-count {
-  color: #6b7280;
-  font-size: .9rem;
-  margin: 0;
-}
-
-.post-list {
-  list-style: none;
-  padding: 0;
-}
-.post-list li {
-  border-bottom: 1px solid #e5e7eb;
-  padding: 14px 0;
-}
-.post-list li:last-child {
-  border-bottom: none;
-}
-.post-list .post-date {
-  color: #6b7280;
-  font-size: .85rem;
-  margin-bottom: 2px;
-}
-.post-list .post-title a {
-  color: inherit;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.05rem;
-}
-.post-list .post-title a:hover {
-  color: #2563eb;
-  text-decoration: underline;
-}
-.back-link {
-  display: inline-block;
-  margin-bottom: 16px;
-  color: #3b82f6;
-  text-decoration: none;
+.post-feed-intro {
+  color: #374151;
   font-size: .95rem;
+  line-height: 1.55;
+  margin: 4px 0 8px;
 }
-.back-link:hover {
-  text-decoration: underline;
+.post-feed-meta {
+  color: #9ca3af;
+  font-size: .82rem;
+  margin: 0 0 20px;
+  letter-spacing: .02em;
+}
+@media (prefers-color-scheme: dark) {
+  .post-feed-intro { color: #d1d5db; }
+  .post-feed-meta { color: #6b7280; }
 }
 
-@media(prefers-color-scheme:dark) {
-  .cat-card { border-color: #374151; background: #111827; }
-  .cat-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.3); }
-  .cat-card .cat-count { color: #9ca3af; }
-  .post-list li { border-color: #374151; }
-  .post-list .post-date { color: #9ca3af; }
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.chip {
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: var(--card-bg, #fff);
+  color: #6b7280;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.chip:hover {
+  border-color: #6b7280;
+  color: #111827;
+}
+.chip.active {
+  background: #111827;
+  border-color: #111827;
+  color: #fff;
+}
+
+.feed { display: flex; flex-direction: column; }
+.feed-card {
+  display: block;
+  padding: 16px 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background: var(--card-bg, #fff);
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+.feed-card:hover {
+  border-color: #9ca3af;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+  transform: translateY(-1px);
+}
+.feed-card.hidden { display: none; }
+
+.feed-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.feed-date {
+  font-size: .78rem;
+  color: #6b7280;
+  letter-spacing: .03em;
+}
+.feed-cat-pill {
+  font-size: .68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  color: #4b5563;
+}
+.feed-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  margin: 0;
+  color: #111827;
+  line-height: 1.35;
+}
+
+.feed-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #9ca3af;
+  font-size: .92rem;
+  display: none;
+}
+.feed-empty.show { display: block; }
+
+@media (prefers-color-scheme: dark) {
+  .post-feed-intro { color: #9ca3af; }
+  .filter-chips { border-color: #374151; }
+  .chip { background: #111827; border-color: #374151; color: #9ca3af; }
+  .chip:hover { border-color: #9ca3af; color: #f3f4f6; }
+  .chip.active { background: #f3f4f6; color: #111827; border-color: #f3f4f6; }
+  .feed-card { background: #111827; border-color: #374151; }
+  .feed-card:hover { border-color: #6b7280; }
+  .feed-date { color: #9ca3af; }
+  .feed-cat-pill { background: #1f2937; border-color: #374151; color: #9ca3af; }
+  .feed-title { color: #f3f4f6; }
+  .feed-empty { color: #6b7280; }
 }
 </style>
 
-<!-- Level 1: Top-level categories -->
-<div id="level-1">
-  <div class="cat-grid">
-    {% assign top_cats = "" | split: "" %}
-    {% for post in site.posts %}
-      {% assign top = post.categories[0] %}
-      {% unless top_cats contains top %}
-        {% assign top_cats = top_cats | push: top %}
-      {% endunless %}
-    {% endfor %}
-    {% assign top_cats = top_cats | sort %}
-    {% for cat in top_cats %}
-      {% assign cat_posts = site.posts | where_exp: "p", "p.categories[0] == cat" %}
-      <a class="cat-card" href="#" onclick="showSubcats('{{ cat }}'); return false;">
-        <h2>{{ cat }}</h2>
-        <p class="cat-count">{{ cat_posts.size }} post{% if cat_posts.size != 1 %}s{% endif %}</p>
-      </a>
-    {% endfor %}
-  </div>
+<p class="post-feed-intro">These are casual study notes I jot down while reading papers.</p>
+<p class="post-feed-meta">{{ site.posts | size }} posts · Filter by category below.</p>
+
+{% assign top_cats = "" | split: "" %}
+{% for post in site.posts %}
+  {% assign top = post.categories[0] | default: "uncategorized" %}
+  {% unless top_cats contains top %}
+    {% assign top_cats = top_cats | push: top %}
+  {% endunless %}
+{% endfor %}
+{% assign top_cats = top_cats | sort %}
+
+<div class="filter-chips" id="filter-chips">
+  <button class="chip active" data-filter="all" type="button">All</button>
+  {% for cat in top_cats %}
+    <button class="chip" data-filter="{{ cat | slugify }}" type="button">{{ cat }}</button>
+  {% endfor %}
 </div>
 
-<!-- Level 2: Sub-categories -->
-<div id="level-2" style="display:none;">
-  <a class="back-link" href="#" onclick="showLevel1(); return false;">&larr; All Categories</a>
-  <h2 id="level-2-title"></h2>
-  {% for cat in top_cats %}
-  <div class="subcat-group" id="subcat-{{ cat | slugify }}" style="display:none;">
-    <div class="cat-grid">
-      {% assign sub_cats = "" | split: "" %}
-      {% assign cat_posts = site.posts | where_exp: "p", "p.categories[0] == cat" %}
-      {% for post in cat_posts %}
+<div class="feed" id="feed">
+  {% assign sorted_posts = site.posts | sort: "date" | reverse %}
+  {% for post in sorted_posts %}
+    {% assign top = post.categories[0] | default: "uncategorized" %}
+    <a href="{{ post.url | relative_url }}" class="feed-card" data-cat="{{ top | slugify }}">
+      <div class="feed-meta">
+        <span class="feed-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+        <span class="feed-cat-pill">{{ top }}</span>
         {% if post.categories[1] %}
-          {% assign sub = post.categories[1] %}
-        {% else %}
-          {% assign sub = "uncategorized" %}
+          <span class="feed-cat-pill">{{ post.categories[1] }}</span>
         {% endif %}
-        {% unless sub_cats contains sub %}
-          {% assign sub_cats = sub_cats | push: sub %}
-        {% endunless %}
-      {% endfor %}
-      {% assign sub_cats = sub_cats | sort %}
-      {% for sub in sub_cats %}
-        {% assign sub_posts = site.posts | where_exp: "p", "p.categories[0] == cat and p.categories[1] == sub" %}
-        <a class="cat-card" href="#" onclick="showPosts('{{ cat }}', '{{ sub }}'); return false;">
-          <h2>{{ sub }}</h2>
-          <p class="cat-count">{{ sub_posts.size }} post{% if sub_posts.size != 1 %}s{% endif %}</p>
-        </a>
-      {% endfor %}
-    </div>
-  </div>
+      </div>
+      <p class="feed-title">{{ post.title }}</p>
+    </a>
   {% endfor %}
 </div>
 
-<!-- Level 3: Post list -->
-<div id="level-3" style="display:none;">
-  <a class="back-link" id="level-3-back" href="#" onclick="return false;">&larr; Back</a>
-  <h2 id="level-3-title"></h2>
-  {% for cat in top_cats %}
-    {% assign cat_posts = site.posts | where_exp: "p", "p.categories[0] == cat" %}
-    {% assign sub_cats = "" | split: "" %}
-    {% for post in cat_posts %}
-      {% if post.categories[1] %}
-        {% assign sub = post.categories[1] %}
-      {% else %}
-        {% assign sub = "uncategorized" %}
-      {% endif %}
-      {% unless sub_cats contains sub %}
-        {% assign sub_cats = sub_cats | push: sub %}
-      {% endunless %}
-    {% endfor %}
-    {% for sub in sub_cats %}
-      {% assign sub_posts = site.posts | where_exp: "p", "p.categories[0] == cat and p.categories[1] == sub" | sort: "date" | reverse %}
-      <ul class="post-list" id="posts-{{ cat | slugify }}-{{ sub | slugify }}" style="display:none;">
-        {% for post in sub_posts %}
-        <li>
-          <div class="post-date">{{ post.date | date: "%Y-%m-%d" }}</div>
-          <div class="post-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
-        </li>
-        {% endfor %}
-      </ul>
-    {% endfor %}
-  {% endfor %}
-</div>
+<div class="feed-empty" id="feed-empty">No posts in this category.</div>
 
 <script>
-function slug(s) {
-  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-}
-
-function showLevel1() {
-  document.getElementById('level-1').style.display = 'block';
-  document.getElementById('level-2').style.display = 'none';
-  document.getElementById('level-3').style.display = 'none';
-}
-
-function showSubcats(cat) {
-  document.getElementById('level-1').style.display = 'none';
-  document.getElementById('level-2').style.display = 'block';
-  document.getElementById('level-3').style.display = 'none';
-  document.getElementById('level-2-title').textContent = cat;
-  document.querySelectorAll('.subcat-group').forEach(function(el) { el.style.display = 'none'; });
-  var target = document.getElementById('subcat-' + slug(cat));
-  if (target) target.style.display = 'block';
-}
-
-function showPosts(cat, sub) {
-  document.getElementById('level-1').style.display = 'none';
-  document.getElementById('level-2').style.display = 'none';
-  document.getElementById('level-3').style.display = 'block';
-  document.getElementById('level-3-title').textContent = sub;
-  var backLink = document.getElementById('level-3-back');
-  backLink.onclick = function() { showSubcats(cat); return false; };
-  document.querySelectorAll('.post-list').forEach(function(el) { el.style.display = 'none'; });
-  var target = document.getElementById('posts-' + slug(cat) + '-' + slug(sub));
-  if (target) target.style.display = 'block';
-}
+  (function () {
+    var chips = document.querySelectorAll('#filter-chips .chip');
+    var cards = document.querySelectorAll('#feed .feed-card');
+    var emptyMsg = document.getElementById('feed-empty');
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        var filter = chip.dataset.filter;
+        chips.forEach(function (c) { c.classList.remove('active'); });
+        chip.classList.add('active');
+        var visible = 0;
+        cards.forEach(function (card) {
+          var show = filter === 'all' || card.dataset.cat === filter;
+          card.classList.toggle('hidden', !show);
+          if (show) visible++;
+        });
+        emptyMsg.classList.toggle('show', visible === 0);
+      });
+    });
+  })();
 </script>

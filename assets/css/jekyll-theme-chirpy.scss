@@ -1,0 +1,176 @@
+---
+---
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* ====================================================== */
+/* Custom: hide sidebar, full-width content, topbar nav    */
+/* ====================================================== */
+
+/* Hide the sidebar completely */
+#sidebar {
+  display: none !important;
+}
+
+/* Hide the right panel (Recently Updated, Trending Tags) and expand main */
+#panel-wrapper {
+  display: none !important;
+}
+#main-wrapper main,
+#main-wrapper #tail-wrapper {
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+}
+
+/* Remove the main wrapper's left margin reserved for the sidebar */
+#main-wrapper,
+#main-wrapper.row {
+  margin-left: 0 !important;
+
+  @media (min-width: 992px) {
+    margin-left: 0 !important;
+  }
+  @media (min-width: 1650px) {
+    margin-left: 0 !important;
+  }
+}
+
+/* ---------- Topbar ---------- */
+
+/* Override the theme's translucent topbar background with an opaque one */
+html:not([data-mode]),
+html[data-mode='light'] {
+  --topbar-bg: #ffffff;
+}
+html[data-mode='dark'] {
+  --topbar-bg: #1b1b1e;
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-mode]) {
+    --topbar-bg: #1b1b1e;
+  }
+}
+
+#topbar-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background-color: var(--topbar-bg);
+  border-bottom: 1px solid var(--main-border-color, #e5e7eb);
+}
+
+#topbar {
+  max-width: 100%;
+  width: 100%;
+}
+
+.topbar-brand {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  color: var(--site-title-color, inherit) !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease;
+}
+.topbar-brand:hover {
+  color: #2563eb !important;
+}
+
+.topbar-nav-desktop {
+  display: none;
+  align-items: center;
+  gap: 1.6rem;
+}
+@media (min-width: 768px) {
+  .topbar-nav-desktop {
+    display: flex;
+  }
+}
+
+.topbar-nav-link {
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text-color, #374151) !important;
+  text-decoration: none !important;
+  padding: 4px 2px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.topbar-nav-link:hover {
+  color: #2563eb !important;
+}
+.topbar-nav-link.active {
+  color: #2563eb !important;
+  border-bottom-color: #2563eb;
+}
+
+.topbar-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  font-size: 1.15rem;
+  color: var(--text-color, inherit);
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+.topbar-menu-btn:hover {
+  background: var(--sidebar-hover-bg, rgba(0, 0, 0, 0.05));
+}
+@media (min-width: 768px) {
+  .topbar-menu-btn {
+    display: none;
+  }
+}
+
+/* Mobile dropdown menu */
+#topbar-mobile-menu {
+  position: fixed;
+  top: 3rem; /* matches $topbar-height */
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 99;
+  display: none;
+  flex-direction: column;
+  padding: 4px 18px 12px;
+  background-color: var(--topbar-bg, #fff);
+  border-bottom: 1px solid var(--main-border-color, #e5e7eb);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+}
+#topbar-mobile-menu.open {
+  display: flex;
+}
+@media (min-width: 768px) {
+  #topbar-mobile-menu,
+  #topbar-mobile-menu.open {
+    display: none !important;
+  }
+}
+
+.topbar-mobile-link {
+  padding: 11px 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  color: var(--text-color, inherit) !important;
+  border-bottom: 1px solid var(--main-border-color, #f3f4f6);
+}
+.topbar-mobile-link:last-child {
+  border-bottom: none;
+}
+.topbar-mobile-link.active {
+  color: #2563eb !important;
+}
