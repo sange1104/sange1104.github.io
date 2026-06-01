@@ -118,27 +118,76 @@ icon: fas fa-home
   line-height: 1.45;
 }
 
-.news { display: flex; flex-direction: column; }
+.news {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: var(--card-bg, #fff);
+  padding: 2px 22px;
+}
 .news-item {
+  position: relative;
   display: grid;
-  grid-template-columns: 90px 1fr;
-  gap: 14px;
-  padding: 10px 0;
+  grid-template-columns: 92px 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 11px 0 11px 24px;
   border-bottom: 1px solid #f3f4f6;
-  font-size: .95rem;
-  line-height: 1.55;
+  font-size: .92rem;
+  line-height: 1.5;
 }
 .news-item:last-child { border-bottom: none; }
-.news-date {
-  font-size: .76rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: .07em;
-  color: #6b7280;
-  padding-top: 3px;
+/* timeline rail */
+.news-item::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #eceef1;
 }
+.news-item:first-child::before { top: 15px; }
+.news-item:last-child::before { bottom: calc(100% - 15px); }
+/* timeline dot */
+.news-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #111827;
+  border: 2px solid var(--card-bg, #fff);
+}
+.news-date {
+  font-size: .82rem;
+  font-weight: 700;
+  color: #111827;
+  padding-top: 1px;
+  white-space: nowrap;
+}
+.news-body { min-width: 0; }
+.news-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  vertical-align: middle;
+  margin-right: 8px;
+  font-size: .66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  padding: 1px 8px;
+  border-radius: 999px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.tag-award { background: #fef3c7; color: #92400e; }
+.tag-paper { background: #e0e7ff; color: #3730a3; }
 .news-text { color: #374151; }
 .news-text strong { color: #111827; font-weight: 600; }
+.news-text em { color: #4b5563; }
 .news-text a {
   color: #374151;
   text-decoration: underline;
@@ -146,7 +195,7 @@ icon: fas fa-home
 }
 .news-text a:hover { color: #111827; text-decoration-color: #6b7280; }
 @media (max-width: 540px) {
-  .news-item { grid-template-columns: 1fr; gap: 2px; padding: 8px 0; }
+  .news-item { grid-template-columns: 1fr; gap: 8px; }
   .news-date { padding-top: 0; }
 }
 
@@ -168,9 +217,15 @@ icon: fas fa-home
   .interest-card:hover { border-color: #4b5563; }
   .interest-icon { color: #9ca3af; }
   .home-avatar { border-color: #374151; }
+  .news { border-color: #374151; background: #111827; }
   .news-item { border-color: #1f2937; }
-  .news-date { color: #9ca3af; }
+  .news-item::before { background: #1f2937; }
+  .news-item::after { background: #f3f4f6; border-color: #111827; }
+  .news-date { color: #f3f4f6; }
+  .tag-award { background: #422006; color: #fcd34d; }
+  .tag-paper { background: #1e1b4b; color: #c7d2fe; }
   .news-text { color: #d1d5db; }
+  .news-text em { color: #9ca3af; }
   .news-text strong { color: #f3f4f6; }
   .news-text a { color: #9ca3af; text-decoration-color: #4b5563; }
   .news-text a:hover { color: #f3f4f6; text-decoration-color: #9ca3af; }
@@ -183,7 +238,7 @@ icon: fas fa-home
     <h1 class="home-name">SangEun Lee</h1>
     <p class="home-role">Research Scientist · ETRI, South Korea</p>
     <p class="home-statement">
-      Hi, glad you stopped by! I'm currently a researcher at <strong>ETRI</strong>, and I received my M.Sc. in
+      Welcome! I'm currently a researcher at <strong>ETRI</strong>, and I received my M.Sc. in
       Applied Artificial Intelligence from <strong>Sungkyunkwan University</strong>, where I was advised by
       <a href="https://sites.google.com/view/eunil" target="_blank" rel="noopener"><strong>Prof. Eunil Park</strong></a>.
     </p>
@@ -195,13 +250,45 @@ icon: fas fa-home
       Always open to discussing research, collaborations, or new ideas — feel free to <a href="mailto:sange1104@etri.re.kr">reach out</a>!
     </p>
     <div class="home-links">
-      <a class="home-btn primary" href="{{ '/assets/cv.pdf' | relative_url }}" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i> CV (PDF)</a>
+      <a class="home-btn primary" href="{{ '/assets/cv.pdf' | relative_url }}" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i> CV</a>
       <a class="home-btn" href="mailto:sange1104@etri.re.kr"><i class="fas fa-envelope"></i> Email</a>
       <a class="home-btn" href="https://scholar.google.co.kr/citations?hl=ko&user=BHL0tcUAAAAJ" target="_blank" rel="noopener"><i class="fas fa-graduation-cap"></i> Google Scholar</a>
       <a class="home-btn" href="https://github.com/sange1104" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+      <a class="home-btn" href="https://www.linkedin.com/in/sange1104" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
     </div>
   </div>
 </section>
+
+<h2 class="home-section-heading">Recent News</h2>
+
+<div class="news">
+  <div class="news-item">
+    <span class="news-date">Apr 2026</span>
+    <div class="news-body">
+      <span class="news-text">
+        <span class="news-tag tag-award"><i class="fas fa-trophy"></i> Award</span>Our team (w/ <a href="https://sites.google.com/view/dxlab" target="_blank" rel="noopener"><strong>DXLab</strong></a>) won <strong>2nd place</strong> in the VA Prediction Challenge at <strong>ABAW</strong> (CVPR Workshop 2026).
+      </span>
+    </div>
+  </div>
+  <div class="news-item">
+    <span class="news-date">Apr 2026</span>
+    <div class="news-body">
+      <span class="news-text">
+        <span class="news-tag tag-paper"><i class="fas fa-file-lines"></i> Paper</span>Accepted to <strong>AI4RWC</strong> (CVPR Workshop 2026):
+        <em>Refining Image-to-3D Foundation Models via Geometric Supervision for Industrial Plant Reconstruction.</em>
+      </span>
+    </div>
+  </div>
+  <div class="news-item">
+    <span class="news-date">Nov 2025</span>
+    <div class="news-body">
+      <span class="news-text">
+        <span class="news-tag tag-paper"><i class="fas fa-file-lines"></i> Paper</span>Accepted to <strong>AAAI 2026</strong>:
+        <em>MASP: Multi-Aspect Guided Emotion Reasoning with Soft Prompt Tuning in Vision-Language Models.</em>
+      </span>
+    </div>
+  </div>
+</div>
 
 <h2 class="home-section-heading">Research Interests</h2>
 
@@ -209,41 +296,17 @@ icon: fas fa-home
   <div class="interest-card">
     <div class="interest-icon"><i class="fas fa-cube"></i></div>
     <p class="interest-title">Spatial Intelligence</p>
-    <p class="interest-desc">Spatial reasoning and scene-level understanding for AI systems that perceive and act in 3D environments.</p>
+    <p class="interest-desc">Spatial reasoning and mental modeling from limited observations, enabling AI systems to understand object relationships, scene structure, and navigable 3D environments.</p>
   </div>
   <div class="interest-card">
     <div class="interest-icon"><i class="fas fa-brain"></i></div>
     <p class="interest-title">Multimodal Reasoning</p>
-    <p class="interest-desc">Reasoning across image, 3D, and text modalities — designing VLMs and multimodal frameworks for complex tasks.</p>
+    <p class="interest-desc">Developing vision-language models that reason across images, 3D representations, and language, with applications in spatial understanding, scene interpretation, and human-centric reasoning.</p>
   </div>
   <div class="interest-card">
     <div class="interest-icon"><i class="fas fa-cubes"></i></div>
     <p class="interest-title">3D Generative AI</p>
-    <p class="interest-desc">Scene-level 3D generation, mesh refinement, and domain adaptation of 3D foundation models.</p>
+    <p class="interest-desc">Scene-to-3D generation, geometry-aware reconstruction, and adaptation of 3D foundation models for real-world and industrial applications.</p>
   </div>
 </div>
 
-<h2 class="home-section-heading">Recent News</h2>
-
-<div class="news">
-  <div class="news-item">
-    <span class="news-date">Apr 2026</span>
-    <span class="news-text">
-      Our team won <strong>2nd place</strong> in the VA Prediction Challenge at <strong>ABAW</strong> (CVPR Workshop 2026).
-    </span>
-  </div>
-  <div class="news-item">
-    <span class="news-date">Apr 2026</span>
-    <span class="news-text">
-      Paper accepted to <strong>AI4RWC</strong> (CVPR Workshop 2026):
-      <em>Refining Image-to-3D Foundation Models via Geometric Supervision for Industrial Plant Reconstruction.</em>
-    </span>
-  </div>
-  <div class="news-item">
-    <span class="news-date">Nov 2025</span>
-    <span class="news-text">
-      Paper accepted to <strong>AAAI 2026</strong>:
-      <em>MASP: Multi-Aspect Guided Emotion Reasoning with Soft Prompt Tuning in Vision-Language Models.</em>
-    </span>
-  </div>
-</div>
