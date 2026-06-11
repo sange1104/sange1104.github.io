@@ -2,7 +2,7 @@
 title: "MindJourney: Test-Time Scaling with World Models for Spatial Reasoning"
 date: 2026-04-28
 categories: [paper-review, spatial-reasoning]
-tags: [mllm, vision-language]
+tags: [long, mllm, vision-language]
 ---
 
 - 2025.07
@@ -28,7 +28,7 @@ tags: [mllm, vision-language]
 ## Method
 
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8937ab66-9873-42b9-a0ea-ddc3bff7d2bd/809d6a25-9e97-48f5-8182-f634d9c5d1b2/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466XVVGJN3H%2F20260610%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260610T044554Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBQaCXVzLXdlc3QtMiJHMEUCIQDQcVjzdX8Z72j6O7uR5YfmZnBkkOkT2k02iB8GxvHuegIgctZCV0ZIiyI%2BhZTxMS2kNEmtGD8kS2Nxf9POtF22yvIqiAQI3f%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDBpNbWykkYyPDVVhOSrcA2%2BDoshK49at0rzT5UQWyknLRGTeztsRdeIpXpw%2B9iVXt3sBponzbwdzx39Zn22jvTOVrv4k6f6NeHO8%2Bh5f33KnZC2ZF6usXduyRN8gZIrLDnNoaH23PQxp66pOW6aJDhUb%2FF%2FXqN6KLF6OgR9bllFF%2FEOWssvoUiNA5sW7A9t42ZtWROutGtlnwjD9UxiNBItzt43UfgsACEJ1qI9eBMZgKNHa3qduU1HeHhFLNE8XjYDQlLsE1DfDTb%2FfCMiXRYFJmq6KxjJnHozPWjK%2F6QkDLYlOMBlzy%2FNPKHjsDAM%2F0440ThPG286fQaCIUn7gyz7gtqE4UiImJsO5vQXaZNz%2FInWz%2FjaJXp0Vr%2FuP%2BJ2b3MjKBKPDTppRfqEgagYFciF0ofuhtzWEI40o9UnjE7aqSkdHv%2BIguAECn9%2FxNtVrnNhrRXBlnZgGUljQko1qOtivKbj1PoqB4nRQGQssf%2BzKTTo6%2FEeiG7GQYIjkRqY9SSUsQQXTlffIVPYWievBuq4LCl9E%2FhQoa1pfjiA80kgJqE%2BafMerQ0QzFOicUfICayGIde%2B85IHIVeUUo0oAlHh9Sxq1uFhONppncGiZP%2F6kGEhlnoBIOXBT1VBtJwcKp4hGie6Xf7WMG4nzMP65o9EGOqUBbouFPGLqON2KMyLOk7EMHok06gtt0Ta0S8tK5oNvCSq47rNP8Jyg5vft6f%2BCTry%2FFVmWKkT%2BmKURfsHCipu5bm7W4Tawh3VQakOQc5qd8MZeu96npohCqhX9bM%2BTNlRCVLlH3W1O1RDcq9SrBVfSu1%2FVspJlnJb%2FdpAgeYe6UMZXzS3bU3tpr908QvXQfiuhYtOQnTD6zTo3aizK8WN3mEg2rAOk&X-Amz-Signature=fc9ff0dd7a60fdcd5a1abe15c803e26ccb1f5ec996646765b53dee56f80771a7&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+![image.png](https://res.cloudinary.com/drsa8npkg/image/upload/v1781142161/notion_blog/2026-04-28-mindjourney-img1.png)
 
 - **3.1. overview**
     - 목표: 월드 모델의 예측 능력을 활용해서 vlm의 3d 공간 추론 성능을 test-time에서 향상시키는 것을 목표로 함
@@ -80,7 +80,7 @@ tags: [mllm, vision-language]
     - 이 과정을 n step 반복 or 더 이상 후보가 없을 때 종료
         - buffer에 저장된 모든 유용한 trajectory와 그에 대응하는 이미지, 설명을 모아 vlm에 입력하면 vlm은 이를 기반으로 최종 답변을 생성함
 
-            ![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8937ab66-9873-42b9-a0ea-ddc3bff7d2bd/3e62d2d7-97c7-4ac0-a628-cdb3dccb482e/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466Q2LCIL6L%2F20260610%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260610T044600Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBQaCXVzLXdlc3QtMiJIMEYCIQDXe9So1A5UOLyrhQqZ7%2Bm4umoeMVSHGlz6%2FbcVMaM%2FdAIhAO5hYVQavT52a7K79eXcMZZZtppAUGGGAzwCZurqqy7LKogECN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1IgxlzKfkV49SElODeekq3ANGTwB1oSFMuhaXKFyJl2Bh%2BVWiNZtPh5qu7BIgAU%2FXyaMG0mNbip57k9f2%2F70r3VpqulmgQHIWj4zD6jO4bQ70UOZSPGgyUKhU7a%2BBmDc2%2B%2FZEOlQMVoLUpVnMyTEBbKndViyK50PEXHXlw1H6E6PKvUcNwGlC9AURAbfoBn9Bzmg3Rukhwk0cxmKNC2KFYhe5WC%2FdvGyAYH%2Buk5TyEPzSPpczT2mdrZGmy60Bo2XG9Ewnj0G2U007%2BdYWyEChsh2ihUdQLir4ALjjVDA5pIf75KojfL0duFn3ujKty%2FwiSCx44Ubaakw8%2BHcqHT%2BP%2FJPjjiyr8ukzKVoa83xdUU7fzIpKi3RzQIx2S83sGc5ILp0lCVFaLnHfpM1ZkDN46CeVPrvQw7%2FzKz9nUxeZ%2FjMA3q27UhFuh72WROqJJkmWMV%2Fgge1uu4MejA1jETJYiddJqWJvHOqAnGOY%2FNs71XMIZJL9xyjlbhD0WSkb4VBk4nvWKUGx4ajwkZgrG8s5FMCS4p5mbvo%2FfSDLPjQf3%2FWoN8%2BvGRdy9A5KmzsXsUFXljEhw2DsalELpLIFcb1EUXbnUyqRiVdCMCLNAqe3ICTB%2FQbbdjzAEDYu57OA6Tf8BuKLdUrcO%2B5ipnwdxzCau6PRBjqkAV5CfpftzRvul%2BnMfFj3qARtJYafiOPZsgt6SIiEfemC7HSN9ZdcpL4%2BB%2F50%2B7u7V4jwIQ%2FqvJyZ%2F0k%2F%2F5bLYhQ0wodfH301gChQbqk4%2F5ffCEYXBHnoFQ5dZjpdrHY9Tf8bs5rIn%2FB1Ekx9wijEr330nUhfqiXSZBCDxPi8tIhVXCWPQQJdahJUrDR8WFdiZiWQ5FlWsbkfdCh3tMGxte2ZIjje&X-Amz-Signature=b8d8bb40f940052a8d4d5920a6d759fcad3e74c7b00aa1391f1419b26ba4c208&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+            ![image.png](https://res.cloudinary.com/drsa8npkg/image/upload/v1781142163/notion_blog/2026-04-28-mindjourney-img2.png)
 
 - **3.4. Search World Model Details**
     - Search World Model이라는 자체 월드 모델을 학습함
@@ -119,14 +119,14 @@ tags: [mllm, vision-language]
         - 기준 1, 2 점수 threshold 둘 다 8
 - **4.2. Results**
 
-    ![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8937ab66-9873-42b9-a0ea-ddc3bff7d2bd/98028044-fbac-4009-9eb2-fd0f8893ae34/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466YKI3KKME%2F20260610%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260610T044603Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBQaCXVzLXdlc3QtMiJGMEQCIGxiPmv%2FNvcsPMxzsZCizoleQhLC%2Bq7gLamDgcRI6BMqAiA8lSos%2FFldAh5suqI4boc8voQwdF8cxdqkjaZVIxyKeSqIBAjd%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDYzNzQyMzE4MzgwNSIMMi8n5YfGSg%2FzE6luKtwDyzJPTsoWOau1FTchWarXbzDr%2BQ4mu%2B7LUdTM1U3YdHNrjYvleLdEUiHmiSp3xy%2FK%2FLGS8wD2GKEV51%2BiSm4rPTqT5CdMqqjfKE3gqCtq0r5iTl4u3RMGUG%2Fw9MRQOmiszlzZYqjbE3OfHgpsN%2FczkfDo09NqIe2Z0gFsG%2FHkfiNPYNYtpJjpGMsMiHdchQxmSSEBg5qEpnv4NVQ7M6jfiUJggCDWS7BIsg%2BZMS7x1Nd%2BflXbHNidu22mXFr5s5N%2BlofI5We0CPtZFsX3BFy7pYou%2FioGGbPYSH8JpdH21Lh1%2FeJmlR5wlT3bZ9COGBJ%2BKQPVvfMwFARrAP3S7IICWe4yhOZIkfPXuW%2Bx%2F3EVpEVfQ9QpEEwlpbSy%2Fgv1Lr5ltDNRo4Pa5Xj9uiXYBHGRT1pBeYdpaXoFPtkCOKWdganPyI8EYnm4bZWIYaoORva%2B1QUaXjXUXDbxoMcT7WAhsi384SaI8jqpkR62EDKVBUa7xnSQMxDLSeTFlu6sM3Nr3XHfZ%2B1jQ%2BeqyREV3SP3AIWG7yjATvqnRNT4tvApsbzd73j5TTR1m1wWp6stighFTL7EUj8YhE3MgFuO8YddJHhsyua317evodsdWqIBsrbRO%2FYfLfrbSNNsliEwtLyj0QY6pgHq3eP4VwJ0Euw3%2BAXtz%2FR3wPA7%2F%2BFzOpAB5srgFMgepqYPIaULPuoRgSZjeJTA6gca3qBOzfnS6yEutjhtd2Pc0F0jk5Nga5ZPq%2B3tGGXV2DY4V9rk2i04QvSc5JBEhdeX9brsxmPMuY%2BcvLgOpuScWdgEY2DofxpMXU%2BC2BTL6ghfZISQB2eUEjPI%2Bahlc6fjxz90aDBrTUhFhhTRAnB8nBWulh%2B0&X-Amz-Signature=e7947aaaef213b894ab5e6b848bf18c38dc6fad023ed215ea257dc86ecf20506&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+    ![image.png](https://res.cloudinary.com/drsa8npkg/image/upload/v1781142166/notion_blog/2026-04-28-mindjourney-img3.png)
 
     - **SAT-Real**: 실내외 실제 이미지 150개
         - 모든 vlm에 mindjourney를 적용했을 때 일관되고 큰 폭의 성능 향상이 나타남
         - o1에 mindjourney를 결합햇더니 sota를 달성함
         - 월드 모델 기반 test-time scaling이 rl 기반 scaling과 상호보완적이며, 실제 환경에서도 잘 일반화된다는 것을 보여줌
 
-    ![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8937ab66-9873-42b9-a0ea-ddc3bff7d2bd/19e8eb40-e0e1-4833-9934-e7c0040ec557/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466YKI3KKME%2F20260610%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260610T044603Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBQaCXVzLXdlc3QtMiJGMEQCIGxiPmv%2FNvcsPMxzsZCizoleQhLC%2Bq7gLamDgcRI6BMqAiA8lSos%2FFldAh5suqI4boc8voQwdF8cxdqkjaZVIxyKeSqIBAjd%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDYzNzQyMzE4MzgwNSIMMi8n5YfGSg%2FzE6luKtwDyzJPTsoWOau1FTchWarXbzDr%2BQ4mu%2B7LUdTM1U3YdHNrjYvleLdEUiHmiSp3xy%2FK%2FLGS8wD2GKEV51%2BiSm4rPTqT5CdMqqjfKE3gqCtq0r5iTl4u3RMGUG%2Fw9MRQOmiszlzZYqjbE3OfHgpsN%2FczkfDo09NqIe2Z0gFsG%2FHkfiNPYNYtpJjpGMsMiHdchQxmSSEBg5qEpnv4NVQ7M6jfiUJggCDWS7BIsg%2BZMS7x1Nd%2BflXbHNidu22mXFr5s5N%2BlofI5We0CPtZFsX3BFy7pYou%2FioGGbPYSH8JpdH21Lh1%2FeJmlR5wlT3bZ9COGBJ%2BKQPVvfMwFARrAP3S7IICWe4yhOZIkfPXuW%2Bx%2F3EVpEVfQ9QpEEwlpbSy%2Fgv1Lr5ltDNRo4Pa5Xj9uiXYBHGRT1pBeYdpaXoFPtkCOKWdganPyI8EYnm4bZWIYaoORva%2B1QUaXjXUXDbxoMcT7WAhsi384SaI8jqpkR62EDKVBUa7xnSQMxDLSeTFlu6sM3Nr3XHfZ%2B1jQ%2BeqyREV3SP3AIWG7yjATvqnRNT4tvApsbzd73j5TTR1m1wWp6stighFTL7EUj8YhE3MgFuO8YddJHhsyua317evodsdWqIBsrbRO%2FYfLfrbSNNsliEwtLyj0QY6pgHq3eP4VwJ0Euw3%2BAXtz%2FR3wPA7%2F%2BFzOpAB5srgFMgepqYPIaULPuoRgSZjeJTA6gca3qBOzfnS6yEutjhtd2Pc0F0jk5Nga5ZPq%2B3tGGXV2DY4V9rk2i04QvSc5JBEhdeX9brsxmPMuY%2BcvLgOpuScWdgEY2DofxpMXU%2BC2BTL6ghfZISQB2eUEjPI%2Bahlc6fjxz90aDBrTUhFhhTRAnB8nBWulh%2B0&X-Amz-Signature=6f1db3841e42a0c12df59715eb0be3302943d846e11b506831300997287d1672&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+    ![image.png](https://res.cloudinary.com/drsa8npkg/image/upload/v1781142168/notion_blog/2026-04-28-mindjourney-img4.png)
 
     - **SAT-Synthesized**: 4000개 질문, o1 실험의 계산 비용을 고려해서 500개를 샘플링해서 평가함
         - 마찬가지로 mj 결합했더니 평균 정확도가 올라감
@@ -135,7 +135,7 @@ tags: [mllm, vision-language]
 - **4.3. Ablation Study**
     - 제안한 탐색 방법의 하이퍼파라미터가 성능에 미치는 영향 분석
 
-    ![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8937ab66-9873-42b9-a0ea-ddc3bff7d2bd/b3746131-b519-4adb-860b-213e7fbac55e/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466XGOFGHEL%2F20260610%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260610T044603Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBQaCXVzLXdlc3QtMiJHMEUCIGYVYIE63h0y%2FvFg6vfqWfpy3qUifL2hwmRQ2swa6VMHAiEA4bcSuFU44S18m4rlzGMZr%2FHuXOjRaBE3%2FwsN8%2B1FnTEqiAQI3f%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDFSR%2FJUuSE1yIeIl7CrcA4GW98LfnBNQp77UTlsL6MVv1Dj%2FOlVuuZHl37MMQqLwBpeTHY2S3MYsRZqVxYqMMcwcXQRCgpwMXalhQLFZBWNsR29kzKR8yYhxNcXEGevriH2Zgsfy%2Fs8qB0ch9hX6RfG%2B7c2W06%2BZ4TTVg1cS1p%2BXeUt0UVrwxoxOosnlE4EoI%2FsWmPex25XjejiJBu7%2FBKcLdqHs3ZCLL%2FfJOk0bRicSMby9LEFCPKP5g%2BJwzHnfqyNzeEEGwkYlLCrQZ6QmxMv3hYwoOFP8c%2ByVjMg88SVCoEvfxqkuMh7xF5aaPxCGDVCePLzw7VQtxBkxYV20%2Bj6OYF%2FS%2BP59bI89V68fmNUYWip53d6hxVPzwMAeLLQFcssQuz0BUAWf2uGI3ieL1z3WBOJgJcTQBvOl3fmvJDSBmllHa5kodeCCH%2BEjzBMnt8s%2BDI9gb9M%2Be8V%2Bl2u5PEHWWpQP5lFVSUQadDN1Pr%2FxN%2BORAiH1NX96HoKtTIv2UWdnFK9FmJIcuZU4EUp9viN7qwJuj0Wk9aCaJgF8JiZo6kNCujqtZJ7dJut2MgjWFTsRdKYZNEf2Yze9w%2FKEciKlp7FY2UGkq%2BwiTKpFXv5Vgae%2FeK8Ifdjjt%2B4H4dqRyD3e0RliTB58A99dMJ66o9EGOqUBNKZGmsXNdlo%2Bdw9e8x4WfwBl3eIahJfjLFa0XpW386DSXjnpkrJkzYK9RIqoqx2X9D3RDG72o0g6cj2b53Pbhw2wyFG6RtQKaQElGEcJ0pjSWaDmkI8TIh6pSi08mo3NkWwFHpY99gp1KBYz8f6MASo4ggLaSdCgb6WNDyihWtLG0vu0fcYROoAGCDu7qFxdTJfJqZEyk9OUREaxB1IJrHcB91su&X-Amz-Signature=85a594fcc1a6d92e3788d925ebe5760a1e0189175fc06bd15c5ddf2c7246f45c&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+    ![image.png](https://res.cloudinary.com/drsa8npkg/image/upload/v1781142171/notion_blog/2026-04-28-mindjourney-img5.png)
 
     - gpt-4o + swm 조합
     - 탐식 깊이 n = [1, 2, 3], pruning threshold γ ∈ {4,6,8}
@@ -183,7 +183,7 @@ tags: [mllm, vision-language]
 ## Appendix - B. Failure Case Analysis
 
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8937ab66-9873-42b9-a0ea-ddc3bff7d2bd/49d25601-8997-4f55-a269-7db880ffc043/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466XVVGJN3H%2F20260610%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260610T044554Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBQaCXVzLXdlc3QtMiJHMEUCIQDQcVjzdX8Z72j6O7uR5YfmZnBkkOkT2k02iB8GxvHuegIgctZCV0ZIiyI%2BhZTxMS2kNEmtGD8kS2Nxf9POtF22yvIqiAQI3f%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDBpNbWykkYyPDVVhOSrcA2%2BDoshK49at0rzT5UQWyknLRGTeztsRdeIpXpw%2B9iVXt3sBponzbwdzx39Zn22jvTOVrv4k6f6NeHO8%2Bh5f33KnZC2ZF6usXduyRN8gZIrLDnNoaH23PQxp66pOW6aJDhUb%2FF%2FXqN6KLF6OgR9bllFF%2FEOWssvoUiNA5sW7A9t42ZtWROutGtlnwjD9UxiNBItzt43UfgsACEJ1qI9eBMZgKNHa3qduU1HeHhFLNE8XjYDQlLsE1DfDTb%2FfCMiXRYFJmq6KxjJnHozPWjK%2F6QkDLYlOMBlzy%2FNPKHjsDAM%2F0440ThPG286fQaCIUn7gyz7gtqE4UiImJsO5vQXaZNz%2FInWz%2FjaJXp0Vr%2FuP%2BJ2b3MjKBKPDTppRfqEgagYFciF0ofuhtzWEI40o9UnjE7aqSkdHv%2BIguAECn9%2FxNtVrnNhrRXBlnZgGUljQko1qOtivKbj1PoqB4nRQGQssf%2BzKTTo6%2FEeiG7GQYIjkRqY9SSUsQQXTlffIVPYWievBuq4LCl9E%2FhQoa1pfjiA80kgJqE%2BafMerQ0QzFOicUfICayGIde%2B85IHIVeUUo0oAlHh9Sxq1uFhONppncGiZP%2F6kGEhlnoBIOXBT1VBtJwcKp4hGie6Xf7WMG4nzMP65o9EGOqUBbouFPGLqON2KMyLOk7EMHok06gtt0Ta0S8tK5oNvCSq47rNP8Jyg5vft6f%2BCTry%2FFVmWKkT%2BmKURfsHCipu5bm7W4Tawh3VQakOQc5qd8MZeu96npohCqhX9bM%2BTNlRCVLlH3W1O1RDcq9SrBVfSu1%2FVspJlnJb%2FdpAgeYe6UMZXzS3bU3tpr908QvXQfiuhYtOQnTD6zTo3aizK8WN3mEg2rAOk&X-Amz-Signature=f0014f9d93f596948bb0a5d947287fcc1e13c99b3351e47c0894cf3235c166ae&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+![image.png](https://res.cloudinary.com/drsa8npkg/image/upload/v1781142173/notion_blog/2026-04-28-mindjourney-img6.png)
 
 - Case A
     - forward movement의 부정확성

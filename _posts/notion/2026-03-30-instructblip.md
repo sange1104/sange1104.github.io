@@ -2,7 +2,7 @@
 title: "InstructBLIP: Towards General-purpose Vision-Language Models with Instruction Tuning"
 date: 2026-03-30
 categories: [paper-review, vision-language]
-tags: [mllm, vision-language]
+tags: [long, mllm, vision-language]
 ---
 
 - NIPS, 2023
@@ -104,7 +104,7 @@ tags: [mllm, vision-language]
     - **공개된 vision-language 데이터셋 26개**, 11개의 task category
 - task 종류
 
-    ![노랑 - held-in, 흰색 - held-out](https://prod-files-secure.s3.us-west-2.amazonaws.com/8937ab66-9873-42b9-a0ea-ddc3bff7d2bd/b8cfba8b-856c-46d2-b746-d439114dce86/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466WYBMMDHH%2F20260610%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260610T044710Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBQaCXVzLXdlc3QtMiJHMEUCIGBTk7%2BTgt2dTyKSYHbjzwrkZvQnrjL1YYMNO%2BUwkD8hAiEA0SIYa8S1DqiFfj5KVtSXZFhG9p1zZSIv7xg9laJIv24qiAQI3f%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDLvdwu%2BSLeYcRI1WjyrcAz%2BeGlYy9V88Z0NhfA%2FdhnK4cLRBlPPwkr7dtsH14d20jNluLlWP%2Fwc4hIifstguISTzIgPoJHHGgbK4hHaiHHQOZPuF8StIKtWBvZXc8D3lNYWT1L5jltuu2a9X5CuTG8pwZOTR6RO%2Fr6bAKSXq2j7TskOGCpOSsNH8Y4gwIMWqzyfU5eUG3r1x9n%2FjeN3Qy%2BrF%2BcnjTuxYhWrCuaT4LT733NX5KX1b6zY0DGbi9nxZ2k8WxBlQKYsNs%2Fsc7iqfhMfJ0VQaXwJ53Gufl7Yk%2FTpQS98Da5%2Bz8HCUsMMV8hXPxldXz%2B1TCQMj9OpsALi354M3P%2Fw8ck%2F4pgl3%2Fv2ht2Q62afUoRGYf6jukz%2BxfYf42meFmI1s%2BXFV6Bdd%2FHA%2Bser8xA8Z%2BP8lwXJzFXUmcOIyWsFGFnJrHOenUQ5p%2FzF4xzDx8Z1%2FoMvdHV4kchVXxjMPm3%2BQxei6pgdelPu7kqWufHOmi9ousS91jCpmtlvyIpjoTTu7CqsfcL5qEi%2BUASM7R%2Bka3VJ%2ByuOMJwFWDM3dM8ILqnUGJ3lfnVFl8%2FD%2B0iRu4S05LyirJdhOyt6SZxPJXxvomPPEy21U3HVNvNW0FB3hxLHIP4GcbvRb5kAwU%2FPU12OrFMXTOh%2BzMI%2B6o9EGOqUBaaQ5V8d91qAgo%2FirJssiiW24xkhs9Umd3ADhcHfD3kSOCp7baX%2BB6nGKDenEwWdaS%2Baw4LYOf55njpoP7MQPQT2FNsxqxHXX0Yu025iVswRwD03Egoln0Uun7ztWccwukkJRFRnRoguDtvASpWenfPhyRXb8AHlWuvwaqMiipmrviZmuGsGC2rr3l30EjZTGMfMpj7wX7evOgNrN9v2WsVbzCyai&X-Amz-Signature=37596b3435a14dcd13f91afc279622cc71a337f8e7d64b89bd16189cc4e829b6&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+    ![노랑 - held-in, 흰색 - held-out](https://res.cloudinary.com/drsa8npkg/image/upload/v1781142276/notion_blog/2026-03-30-instructblip-img1.png)
 
     - 단순 caption, qa가 아니라 다양한 난이도/형태의 task를 포괄함
 - instruction 데이터 생성 방식
@@ -139,7 +139,7 @@ tags: [mllm, vision-language]
 **2.3. Instruction-aware Visual Feature Extraction**
 
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8937ab66-9873-42b9-a0ea-ddc3bff7d2bd/26ad8e84-7e03-46da-b5cd-630e92a97fef/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466ZLN7VBRR%2F20260610%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260610T044702Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBQaCXVzLXdlc3QtMiJIMEYCIQDggIKHwUH58Y6JSZJ%2Bd7N1yvwSbA5DQPQl%2BrGSXVYxHQIhAIN49JhI%2BPMsSgEhNv%2FEmCnqxsY0vXvFbEC3TU0JSaOzKogECN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1Igw7P9aasNYwQvTtMs4q3ANTxfvB7k1PGZv%2FXXy3LbS7n24mACwz%2BtiMGHs2PsSWfiLpGpq%2FO7SYZzEuVCeZtWV1nGTr%2BOeNBPm2ATClZSpRoJYDmQAzs8QJKFOChtgwT7xfEGIO0%2B8tgt5HMlvNXH6xuFckovB5LgSKja8CTuQSw5fDMbgVfOMKAIrRiOsmUjd2xEKPw%2FW%2BtpjK7AyzZMM8ztjunXyjuyhYyF7zuJw%2FX3DZ0DqptTz2Fhkkadlri60Rzx2v8vG5xKnNdRzyEKAFmwZq7hYPvjEGt9XMVd4At1aUhQWw3zwvc%2B3A26O08CPWo%2BEdFNXLB7E9q4Szgcc3daEAuYGBat%2FQpi5fcNXmQoMDqwazZ7SbxOBfGtItWdNZ4AnJLilf8oHEI2sb5YJwWxynTv%2Bw4jV6x14dVnogTuQiwfZDqcHv0vbfe4r4p%2FPcZ%2FuLhNYPLnh7wEj2gn1lwA2MnA3g%2FfRODcW8eCXxvErdnFtwOaIwNYCc6Ft43paDCRjPIRfy0hOGhkIipAjrvt3DjSzlYcStg94FL5svtOnJ9zISG3cKcoX9B0Cr6riY7mS%2BL90gko4SlWfnJOSewLJPlEDiKtFVsquH0470ju5mBHYr61RZqZFNL9At89AOiytGHpOqSTn30jCnvKPRBjqkAZtmwfNAA6xv%2BuVEoDgGypTHqnDqVOzx%2B88lUELU9PH4c66F22YuhdwNjfEus3jx5MU9c8u5%2F4E%2BgJLY7tWJLRMwuqdvNtIOCVg3VS3%2BAr%2FhLoE7GRd9PqAgVhJEtGPHrJfgfaXl%2FJDDacoBWPDURRHerb7WGFXttnYnIPlafH9eR6TVbhrdn20dgy%2Fsb7qQMBGcdVVq%2B6TO5ljAKRea0RSSZ3of&X-Amz-Signature=bb7ca40575ba09c206d980c0f978c64ca76856fc6b149fcee2b33f2cf0799f59&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+![image.png](https://res.cloudinary.com/drsa8npkg/image/upload/v1781142278/notion_blog/2026-03-30-instructblip-img2.png)
 
 - 기존 방식의 한계
     - blip2포함 기존 방식들은 instruction과 무관하게 visual feature를 추출함
@@ -231,7 +231,7 @@ tags: [mllm, vision-language]
 3.1. Zero-shot Evaluation
 
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8937ab66-9873-42b9-a0ea-ddc3bff7d2bd/c21abd49-6187-4db6-8ccc-78d871a99c43/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466ZLN7VBRR%2F20260610%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260610T044702Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBQaCXVzLXdlc3QtMiJIMEYCIQDggIKHwUH58Y6JSZJ%2Bd7N1yvwSbA5DQPQl%2BrGSXVYxHQIhAIN49JhI%2BPMsSgEhNv%2FEmCnqxsY0vXvFbEC3TU0JSaOzKogECN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1Igw7P9aasNYwQvTtMs4q3ANTxfvB7k1PGZv%2FXXy3LbS7n24mACwz%2BtiMGHs2PsSWfiLpGpq%2FO7SYZzEuVCeZtWV1nGTr%2BOeNBPm2ATClZSpRoJYDmQAzs8QJKFOChtgwT7xfEGIO0%2B8tgt5HMlvNXH6xuFckovB5LgSKja8CTuQSw5fDMbgVfOMKAIrRiOsmUjd2xEKPw%2FW%2BtpjK7AyzZMM8ztjunXyjuyhYyF7zuJw%2FX3DZ0DqptTz2Fhkkadlri60Rzx2v8vG5xKnNdRzyEKAFmwZq7hYPvjEGt9XMVd4At1aUhQWw3zwvc%2B3A26O08CPWo%2BEdFNXLB7E9q4Szgcc3daEAuYGBat%2FQpi5fcNXmQoMDqwazZ7SbxOBfGtItWdNZ4AnJLilf8oHEI2sb5YJwWxynTv%2Bw4jV6x14dVnogTuQiwfZDqcHv0vbfe4r4p%2FPcZ%2FuLhNYPLnh7wEj2gn1lwA2MnA3g%2FfRODcW8eCXxvErdnFtwOaIwNYCc6Ft43paDCRjPIRfy0hOGhkIipAjrvt3DjSzlYcStg94FL5svtOnJ9zISG3cKcoX9B0Cr6riY7mS%2BL90gko4SlWfnJOSewLJPlEDiKtFVsquH0470ju5mBHYr61RZqZFNL9At89AOiytGHpOqSTn30jCnvKPRBjqkAZtmwfNAA6xv%2BuVEoDgGypTHqnDqVOzx%2B88lUELU9PH4c66F22YuhdwNjfEus3jx5MU9c8u5%2F4E%2BgJLY7tWJLRMwuqdvNtIOCVg3VS3%2BAr%2FhLoE7GRd9PqAgVhJEtGPHrJfgfaXl%2FJDDacoBWPDURRHerb7WGFXttnYnIPlafH9eR6TVbhrdn20dgy%2Fsb7qQMBGcdVVq%2B6TO5ljAKRea0RSSZ3of&X-Amz-Signature=577e5d8ef8a5b043bac478ab0eee12a7dbf438757ce6725cae74b8cce77ec45e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+![image.png](https://res.cloudinary.com/drsa8npkg/image/upload/v1781142279/notion_blog/2026-03-30-instructblip-img3.png)
 
 - 13개 held-out 데이터셋에 대해서 평가함 → 보지 않은 데이터에서의 일반화 성능 확인
 - 베이스라인: flamingo, blip2
@@ -250,7 +250,7 @@ tags: [mllm, vision-language]
 3.2. Ablation Study on Instruction Tuning Techniques
 
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8937ab66-9873-42b9-a0ea-ddc3bff7d2bd/c6440dea-37f4-4390-a9b4-23f91e7ebc2e/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466ZLN7VBRR%2F20260610%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260610T044702Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBQaCXVzLXdlc3QtMiJIMEYCIQDggIKHwUH58Y6JSZJ%2Bd7N1yvwSbA5DQPQl%2BrGSXVYxHQIhAIN49JhI%2BPMsSgEhNv%2FEmCnqxsY0vXvFbEC3TU0JSaOzKogECN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1Igw7P9aasNYwQvTtMs4q3ANTxfvB7k1PGZv%2FXXy3LbS7n24mACwz%2BtiMGHs2PsSWfiLpGpq%2FO7SYZzEuVCeZtWV1nGTr%2BOeNBPm2ATClZSpRoJYDmQAzs8QJKFOChtgwT7xfEGIO0%2B8tgt5HMlvNXH6xuFckovB5LgSKja8CTuQSw5fDMbgVfOMKAIrRiOsmUjd2xEKPw%2FW%2BtpjK7AyzZMM8ztjunXyjuyhYyF7zuJw%2FX3DZ0DqptTz2Fhkkadlri60Rzx2v8vG5xKnNdRzyEKAFmwZq7hYPvjEGt9XMVd4At1aUhQWw3zwvc%2B3A26O08CPWo%2BEdFNXLB7E9q4Szgcc3daEAuYGBat%2FQpi5fcNXmQoMDqwazZ7SbxOBfGtItWdNZ4AnJLilf8oHEI2sb5YJwWxynTv%2Bw4jV6x14dVnogTuQiwfZDqcHv0vbfe4r4p%2FPcZ%2FuLhNYPLnh7wEj2gn1lwA2MnA3g%2FfRODcW8eCXxvErdnFtwOaIwNYCc6Ft43paDCRjPIRfy0hOGhkIipAjrvt3DjSzlYcStg94FL5svtOnJ9zISG3cKcoX9B0Cr6riY7mS%2BL90gko4SlWfnJOSewLJPlEDiKtFVsquH0470ju5mBHYr61RZqZFNL9At89AOiytGHpOqSTn30jCnvKPRBjqkAZtmwfNAA6xv%2BuVEoDgGypTHqnDqVOzx%2B88lUELU9PH4c66F22YuhdwNjfEus3jx5MU9c8u5%2F4E%2BgJLY7tWJLRMwuqdvNtIOCVg3VS3%2BAr%2FhLoE7GRd9PqAgVhJEtGPHrJfgfaXl%2FJDDacoBWPDURRHerb7WGFXttnYnIPlafH9eR6TVbhrdn20dgy%2Fsb7qQMBGcdVVq%2B6TO5ljAKRea0RSSZ3of&X-Amz-Signature=8bcb130655800c66f3d6daa9269c406089a5acf7a29e6fa24abca5a6c77ff24a&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+![image.png](https://res.cloudinary.com/drsa8npkg/image/upload/v1781142281/notion_blog/2026-03-30-instructblip-img4.png)
 
 - <u>**instruction-aware visual feature**</u>의 효과 검증
     - 모든 데이터셋에서 성능이 크게 하락함
@@ -265,7 +265,7 @@ tags: [mllm, vision-language]
 3.3. Qualitative Evalution
 
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8937ab66-9873-42b9-a0ea-ddc3bff7d2bd/9b88ebf5-2f56-43ba-9dcb-e5f6b9a28ff1/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466ZLN7VBRR%2F20260610%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260610T044702Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBQaCXVzLXdlc3QtMiJIMEYCIQDggIKHwUH58Y6JSZJ%2Bd7N1yvwSbA5DQPQl%2BrGSXVYxHQIhAIN49JhI%2BPMsSgEhNv%2FEmCnqxsY0vXvFbEC3TU0JSaOzKogECN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1Igw7P9aasNYwQvTtMs4q3ANTxfvB7k1PGZv%2FXXy3LbS7n24mACwz%2BtiMGHs2PsSWfiLpGpq%2FO7SYZzEuVCeZtWV1nGTr%2BOeNBPm2ATClZSpRoJYDmQAzs8QJKFOChtgwT7xfEGIO0%2B8tgt5HMlvNXH6xuFckovB5LgSKja8CTuQSw5fDMbgVfOMKAIrRiOsmUjd2xEKPw%2FW%2BtpjK7AyzZMM8ztjunXyjuyhYyF7zuJw%2FX3DZ0DqptTz2Fhkkadlri60Rzx2v8vG5xKnNdRzyEKAFmwZq7hYPvjEGt9XMVd4At1aUhQWw3zwvc%2B3A26O08CPWo%2BEdFNXLB7E9q4Szgcc3daEAuYGBat%2FQpi5fcNXmQoMDqwazZ7SbxOBfGtItWdNZ4AnJLilf8oHEI2sb5YJwWxynTv%2Bw4jV6x14dVnogTuQiwfZDqcHv0vbfe4r4p%2FPcZ%2FuLhNYPLnh7wEj2gn1lwA2MnA3g%2FfRODcW8eCXxvErdnFtwOaIwNYCc6Ft43paDCRjPIRfy0hOGhkIipAjrvt3DjSzlYcStg94FL5svtOnJ9zISG3cKcoX9B0Cr6riY7mS%2BL90gko4SlWfnJOSewLJPlEDiKtFVsquH0470ju5mBHYr61RZqZFNL9At89AOiytGHpOqSTn30jCnvKPRBjqkAZtmwfNAA6xv%2BuVEoDgGypTHqnDqVOzx%2B88lUELU9PH4c66F22YuhdwNjfEus3jx5MU9c8u5%2F4E%2BgJLY7tWJLRMwuqdvNtIOCVg3VS3%2BAr%2FhLoE7GRd9PqAgVhJEtGPHrJfgfaXl%2FJDDacoBWPDURRHerb7WGFXttnYnIPlafH9eR6TVbhrdn20dgy%2Fsb7qQMBGcdVVq%2B6TO5ljAKRea0RSSZ3of&X-Amz-Signature=a03fb46a40abedb5b6d969f8661bf986d96afd29bf06e9541a929e1794c81f2f&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+![image.png](https://res.cloudinary.com/drsa8npkg/image/upload/v1781142283/notion_blog/2026-03-30-instructblip-img5.png)
 
 - 복잡한 시각적 추론 가능
     - 상황을 추론, 사건을 유추
@@ -275,7 +275,7 @@ tags: [mllm, vision-language]
 - 멀티턴 대화 가능
 - 다른 모델들과 비교: gpt4, llava, minigpt-4
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8937ab66-9873-42b9-a0ea-ddc3bff7d2bd/d859b7b1-1acd-4851-8fa7-6a3ba5cfc217/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466ZLN7VBRR%2F20260610%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260610T044702Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBQaCXVzLXdlc3QtMiJIMEYCIQDggIKHwUH58Y6JSZJ%2Bd7N1yvwSbA5DQPQl%2BrGSXVYxHQIhAIN49JhI%2BPMsSgEhNv%2FEmCnqxsY0vXvFbEC3TU0JSaOzKogECN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1Igw7P9aasNYwQvTtMs4q3ANTxfvB7k1PGZv%2FXXy3LbS7n24mACwz%2BtiMGHs2PsSWfiLpGpq%2FO7SYZzEuVCeZtWV1nGTr%2BOeNBPm2ATClZSpRoJYDmQAzs8QJKFOChtgwT7xfEGIO0%2B8tgt5HMlvNXH6xuFckovB5LgSKja8CTuQSw5fDMbgVfOMKAIrRiOsmUjd2xEKPw%2FW%2BtpjK7AyzZMM8ztjunXyjuyhYyF7zuJw%2FX3DZ0DqptTz2Fhkkadlri60Rzx2v8vG5xKnNdRzyEKAFmwZq7hYPvjEGt9XMVd4At1aUhQWw3zwvc%2B3A26O08CPWo%2BEdFNXLB7E9q4Szgcc3daEAuYGBat%2FQpi5fcNXmQoMDqwazZ7SbxOBfGtItWdNZ4AnJLilf8oHEI2sb5YJwWxynTv%2Bw4jV6x14dVnogTuQiwfZDqcHv0vbfe4r4p%2FPcZ%2FuLhNYPLnh7wEj2gn1lwA2MnA3g%2FfRODcW8eCXxvErdnFtwOaIwNYCc6Ft43paDCRjPIRfy0hOGhkIipAjrvt3DjSzlYcStg94FL5svtOnJ9zISG3cKcoX9B0Cr6riY7mS%2BL90gko4SlWfnJOSewLJPlEDiKtFVsquH0470ju5mBHYr61RZqZFNL9At89AOiytGHpOqSTn30jCnvKPRBjqkAZtmwfNAA6xv%2BuVEoDgGypTHqnDqVOzx%2B88lUELU9PH4c66F22YuhdwNjfEus3jx5MU9c8u5%2F4E%2BgJLY7tWJLRMwuqdvNtIOCVg3VS3%2BAr%2FhLoE7GRd9PqAgVhJEtGPHrJfgfaXl%2FJDDacoBWPDURRHerb7WGFXttnYnIPlafH9eR6TVbhrdn20dgy%2Fsb7qQMBGcdVVq%2B6TO5ljAKRea0RSSZ3of&X-Amz-Signature=128ca00d9aefffd87ecee782ecaff9e4ab6b1a86691bfa9b7fa23d8b8f1108e9&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+![image.png](https://res.cloudinary.com/drsa8npkg/image/upload/v1781142286/notion_blog/2026-03-30-instructblip-img6.png)
 
 - 모두 긴 답변 생성 가능하지만
 - instructblip은 더 정확한 visual detail을 포함하고 더 논리적으로 일관된 reasoning
@@ -287,7 +287,7 @@ tags: [mllm, vision-language]
 3.4. Instruction Tuning vs. Multitask Learning
 
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8937ab66-9873-42b9-a0ea-ddc3bff7d2bd/69bd73cc-6671-491a-af5b-ab9909b71df7/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466ZLN7VBRR%2F20260610%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260610T044702Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBQaCXVzLXdlc3QtMiJIMEYCIQDggIKHwUH58Y6JSZJ%2Bd7N1yvwSbA5DQPQl%2BrGSXVYxHQIhAIN49JhI%2BPMsSgEhNv%2FEmCnqxsY0vXvFbEC3TU0JSaOzKogECN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1Igw7P9aasNYwQvTtMs4q3ANTxfvB7k1PGZv%2FXXy3LbS7n24mACwz%2BtiMGHs2PsSWfiLpGpq%2FO7SYZzEuVCeZtWV1nGTr%2BOeNBPm2ATClZSpRoJYDmQAzs8QJKFOChtgwT7xfEGIO0%2B8tgt5HMlvNXH6xuFckovB5LgSKja8CTuQSw5fDMbgVfOMKAIrRiOsmUjd2xEKPw%2FW%2BtpjK7AyzZMM8ztjunXyjuyhYyF7zuJw%2FX3DZ0DqptTz2Fhkkadlri60Rzx2v8vG5xKnNdRzyEKAFmwZq7hYPvjEGt9XMVd4At1aUhQWw3zwvc%2B3A26O08CPWo%2BEdFNXLB7E9q4Szgcc3daEAuYGBat%2FQpi5fcNXmQoMDqwazZ7SbxOBfGtItWdNZ4AnJLilf8oHEI2sb5YJwWxynTv%2Bw4jV6x14dVnogTuQiwfZDqcHv0vbfe4r4p%2FPcZ%2FuLhNYPLnh7wEj2gn1lwA2MnA3g%2FfRODcW8eCXxvErdnFtwOaIwNYCc6Ft43paDCRjPIRfy0hOGhkIipAjrvt3DjSzlYcStg94FL5svtOnJ9zISG3cKcoX9B0Cr6riY7mS%2BL90gko4SlWfnJOSewLJPlEDiKtFVsquH0470ju5mBHYr61RZqZFNL9At89AOiytGHpOqSTn30jCnvKPRBjqkAZtmwfNAA6xv%2BuVEoDgGypTHqnDqVOzx%2B88lUELU9PH4c66F22YuhdwNjfEus3jx5MU9c8u5%2F4E%2BgJLY7tWJLRMwuqdvNtIOCVg3VS3%2BAr%2FhLoE7GRd9PqAgVhJEtGPHrJfgfaXl%2FJDDacoBWPDURRHerb7WGFXttnYnIPlafH9eR6TVbhrdn20dgy%2Fsb7qQMBGcdVVq%2B6TO5ljAKRea0RSSZ3of&X-Amz-Signature=2cbc82399135f8e78fb9e1cf5bb68140a5481b14ef44ac9a4c067fa4b47f6ced&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+![image.png](https://res.cloudinary.com/drsa8npkg/image/upload/v1781142288/notion_blog/2026-03-30-instructblip-img7.png)
 
 - instructblip의 성능 향상 원인이 무엇인가?
     - instruction format 덕분인지, multi-task 학습 효과인지
@@ -312,7 +312,7 @@ tags: [mllm, vision-language]
 
 - InstructBLIP을 **특정 데이터셋에 맞게 추가 finetuning**했을 때 성능 확인
 
-    ![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8937ab66-9873-42b9-a0ea-ddc3bff7d2bd/ff562478-0a4b-4af6-bc59-16adc0611b97/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4666PI2QHTE%2F20260610%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260610T044727Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBQaCXVzLXdlc3QtMiJIMEYCIQCJR3p%2BoZKde9PdvvJ%2FOft%2BEOAQJz%2Bs3BfEB80NUH7ruAIhAN7w%2FPXkHHKOPZAkPztYdeNYxsee8xxfAgp2Y3qUhjt4KogECN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1IgxQ5M44s4yqm5q%2FX38q3APLo%2BI8%2FXGU5US%2FXDQLDhFwALMiiJyno8kFEaXJMG%2Fm5c5jBSY4quHXuPVT5cLh%2FEqLCVhNViV%2B2%2BGOOJFb89W5km%2B%2F7IMHxxHSj9Mohvkk6I8gm55UU2opcbb%2Fc7ApbgOUPGkYIX9pjT%2BopzBPAc4%2FSWjrPv22wvVS7RjYZ5YCLno0Ph9vIdqr2U36P8emqzyGNvDrqVDLCscRndZtEZgJdHpGE49o0YzdgLcWnMCAL%2BE5T4gKQEdOx016kdqCFcVcHa%2ButuGXYdwZpX8APoAQuqfM1M60dwK3K1ofUV0Wk9i3%2FH5d1lkgp%2BK785jsAkuEWSsY7dMkYEgNJmBhpA1Jrmwr7%2Bl6OfXLutsZ3tW2VDPOgS64tqYfca2Wn7%2BU9N9tyHeN5dz77M5hxE2v6QdRMBoSjBNt71FS1AGdT26sPqfP2mAItQ0fmnCkDiSdbpJ4V4CuwiDxzp8gBSmyvEFK7uLxQm854sK1OQCQ82h9QebgycAHcXcaln0uDyqxssPtFH7ZhlVYxhBSo6b%2BUOk6mM30h3XOJvQJCkfDmdYyHlHCvz%2Fv5F1e%2BFirsjmartxBBx4dz%2FFZ7MQITc0TZHG9RLA5KTsJG33Ga9qOR%2FAX6omM2mf%2BsjQNywGu9zDJvKPRBjqkAXc8%2ByWoyazlLZ%2Fx5ac76Orobugllp060OcMASHRJZRFlgGzTF%2FA8SXawBBPj5dCMaDTz1qrtbD949CYF4NVzHxc9OjPplYNRka4yoNVjLDXfM19IGQveIjXMXuXagOBNn%2FN6NOxnqyjU%2BDOmXCLrFSPcyjtQ%2FT80BmJgxRtKooJIjZ%2Fg%2B4mJVaNdSw5fyRMXzBwqFEzENBxm4jOUv16B%2F01pboF&X-Amz-Signature=6fabfbed9bba59eae529eb8a7189c7ea3e9983255a4c7614d8f0e7c7339f10f1&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+    ![image.png](https://res.cloudinary.com/drsa8npkg/image/upload/v1781142289/notion_blog/2026-03-30-instructblip-img8.png)
 
 - 기존 방법은 고해상도 이미지를 사용, visual encoder도 함께 finetuning해서 학습 파라미터 많고, 학습 비용이 큼
 - instructblip은 해상도를 224로 유지, visual encoder는 학습 x
