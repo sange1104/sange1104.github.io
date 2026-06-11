@@ -276,7 +276,7 @@ permalink: /posts/
     }
 
     function syncSubBar() {
-      // show only the sub-chips belonging to the active top category
+      /* show only the sub-chips belonging to the active top category */
       var anyForParent = false;
       subChips.forEach(function (sc) {
         var match = sc.dataset.parent === topFilter;
