@@ -2,7 +2,7 @@
 title: "LLaVA: Large Language and Vision Assistant"
 date: 2025-08-29
 categories: [paper-review, vision-language]
-tags: [mllm, vision-language]
+tags: [long, mllm, vision-language]
 ---
   
 **Visual Instruction Tuning**

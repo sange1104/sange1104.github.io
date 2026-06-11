@@ -54,6 +54,36 @@ permalink: /posts/
   color: #fff;
 }
 
+/* second-level (field) filter, shown only when a top category with sub-fields is active */
+.subfilter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: -8px 0 24px;
+  padding: 12px 0 0;
+}
+.subfilter-chips[hidden] { display: none; }
+.subfilter-label {
+  font-size: .72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #9ca3af;
+  margin-right: 2px;
+}
+.subchip {
+  font-size: .76rem;
+  padding: 4px 11px;
+}
+.subchip[hidden] { display: none; }
+.chip-count {
+  font-weight: 600;
+  opacity: .55;
+  margin-left: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
 .feed { display: flex; flex-direction: column; }
 .feed-card {
   display: block;
@@ -96,6 +126,17 @@ permalink: /posts/
   border: 1px solid #e5e7eb;
   color: #4b5563;
 }
+.feed-version {
+  font-size: .66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-left: auto;
+}
+.feed-version.short { background: #ecfdf5; border: 1px solid #a7f3d0; color: #047857; }
+.feed-version.long  { background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; }
 .feed-title {
   font-size: 1.02rem;
   font-weight: 700;
@@ -119,10 +160,13 @@ permalink: /posts/
   .chip { background: #111827; border-color: #374151; color: #9ca3af; }
   .chip:hover { border-color: #9ca3af; color: #f3f4f6; }
   .chip.active { background: #f3f4f6; color: #111827; border-color: #f3f4f6; }
+  .subfilter-label { color: #6b7280; }
   .feed-card { background: #111827; border-color: #374151; }
   .feed-card:hover { border-color: #6b7280; }
   .feed-date { color: #9ca3af; }
   .feed-cat-pill { background: #1f2937; border-color: #374151; color: #9ca3af; }
+  .feed-version.short { background: #064e3b; border-color: #065f46; color: #6ee7b7; }
+  .feed-version.long  { background: #1e3a5f; border-color: #1e40af; color: #93c5fd; }
   .feed-title { color: #f3f4f6; }
   .feed-empty { color: #6b7280; }
 }
@@ -141,9 +185,47 @@ permalink: /posts/
 {% assign top_cats = top_cats | sort %}
 
 <div class="filter-chips" id="filter-chips">
-  <button class="chip active" data-filter="all" type="button">All</button>
+  <button class="chip active" data-filter="all" type="button">All <span class="chip-count">{{ site.posts | size }}</span></button>
   {% for cat in top_cats %}
-    <button class="chip" data-filter="{{ cat | slugify }}" type="button">{{ cat }}</button>
+    {% assign top_count = 0 %}
+    {% for post in site.posts %}
+      {% assign ptop = post.categories[0] | default: "uncategorized" %}
+      {% if ptop == cat %}{% assign top_count = top_count | plus: 1 %}{% endif %}
+    {% endfor %}
+    <button class="chip" data-filter="{{ cat | slugify }}" type="button">{{ cat }} <span class="chip-count">{{ top_count }}</span></button>
+  {% endfor %}
+</div>
+
+<div class="subfilter-chips" id="subfilter-chips" hidden>
+  <span class="subfilter-label">Field</span>
+  {% for cat in top_cats %}
+    {% assign subs = "" | split: "" %}
+    {% for post in site.posts %}
+      {% assign ptop = post.categories[0] | default: "uncategorized" %}
+      {% if ptop == cat and post.categories[1] %}
+        {% assign psub = post.categories[1] %}
+        {% unless subs contains psub %}
+          {% assign subs = subs | push: psub %}
+        {% endunless %}
+      {% endif %}
+    {% endfor %}
+    {% if subs.size > 0 %}
+      {% assign subs = subs | sort %}
+      {% assign parent_count = 0 %}
+      {% for post in site.posts %}
+        {% assign ptop = post.categories[0] | default: "uncategorized" %}
+        {% if ptop == cat %}{% assign parent_count = parent_count | plus: 1 %}{% endif %}
+      {% endfor %}
+      <button class="chip subchip active" data-parent="{{ cat | slugify }}" data-sub="all" type="button" hidden>All <span class="chip-count">{{ parent_count }}</span></button>
+      {% for sub in subs %}
+        {% assign sub_count = 0 %}
+        {% for post in site.posts %}
+          {% assign ptop = post.categories[0] | default: "uncategorized" %}
+          {% if ptop == cat and post.categories[1] == sub %}{% assign sub_count = sub_count | plus: 1 %}{% endif %}
+        {% endfor %}
+        <button class="chip subchip" data-parent="{{ cat | slugify }}" data-sub="{{ sub | slugify }}" type="button" hidden>{{ sub }} <span class="chip-count">{{ sub_count }}</span></button>
+      {% endfor %}
+    {% endif %}
   {% endfor %}
 </div>
 
@@ -151,12 +233,18 @@ permalink: /posts/
   {% assign sorted_posts = site.posts | sort: "date" | reverse %}
   {% for post in sorted_posts %}
     {% assign top = post.categories[0] | default: "uncategorized" %}
-    <a href="{{ post.url | relative_url }}" class="feed-card" data-cat="{{ top | slugify }}">
+    {% assign sub = post.categories[1] | default: "" %}
+    {% assign version = "" %}
+    {% if post.tags contains "short" %}{% assign version = "short" %}{% elsif post.tags contains "long" %}{% assign version = "long" %}{% endif %}
+    <a href="{{ post.url | relative_url }}" class="feed-card" data-cat="{{ top | slugify }}" data-sub="{{ sub | slugify }}">
       <div class="feed-meta">
         <span class="feed-date">{{ post.date | date: "%Y-%m-%d" }}</span>
         <span class="feed-cat-pill">{{ top }}</span>
         {% if post.categories[1] %}
           <span class="feed-cat-pill">{{ post.categories[1] }}</span>
+        {% endif %}
+        {% if version != "" %}
+          <span class="feed-version {{ version }}">{{ version }}</span>
         {% endif %}
       </div>
       <p class="feed-title">{{ post.title }}</p>
@@ -169,20 +257,55 @@ permalink: /posts/
 <script>
   (function () {
     var chips = document.querySelectorAll('#filter-chips .chip');
+    var subBar = document.getElementById('subfilter-chips');
+    var subChips = subBar.querySelectorAll('.subchip');
     var cards = document.querySelectorAll('#feed .feed-card');
     var emptyMsg = document.getElementById('feed-empty');
+    var topFilter = 'all';
+    var subFilter = 'all';
+
+    function apply() {
+      var visible = 0;
+      cards.forEach(function (card) {
+        var show = (topFilter === 'all' || card.dataset.cat === topFilter) &&
+                   (subFilter === 'all' || card.dataset.sub === subFilter);
+        card.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      emptyMsg.classList.toggle('show', visible === 0);
+    }
+
+    function syncSubBar() {
+      // show only the sub-chips belonging to the active top category
+      var anyForParent = false;
+      subChips.forEach(function (sc) {
+        var match = sc.dataset.parent === topFilter;
+        sc.hidden = !match;
+        sc.classList.toggle('active', match && sc.dataset.sub === 'all');
+        if (match) anyForParent = true;
+      });
+      subBar.hidden = (topFilter === 'all') || !anyForParent;
+    }
+
     chips.forEach(function (chip) {
       chip.addEventListener('click', function () {
-        var filter = chip.dataset.filter;
+        topFilter = chip.dataset.filter;
+        subFilter = 'all';
         chips.forEach(function (c) { c.classList.remove('active'); });
         chip.classList.add('active');
-        var visible = 0;
-        cards.forEach(function (card) {
-          var show = filter === 'all' || card.dataset.cat === filter;
-          card.classList.toggle('hidden', !show);
-          if (show) visible++;
+        syncSubBar();
+        apply();
+      });
+    });
+
+    subChips.forEach(function (sc) {
+      sc.addEventListener('click', function () {
+        subFilter = sc.dataset.sub;
+        subChips.forEach(function (c) {
+          if (c.dataset.parent === topFilter) c.classList.remove('active');
         });
-        emptyMsg.classList.toggle('show', visible === 0);
+        sc.classList.add('active');
+        apply();
       });
     });
   })();
